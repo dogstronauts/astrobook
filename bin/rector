@@ -1,0 +1,12 @@
+#!/usr/bin/env php
+<?php
+
+if (!is_dir(dirname(__DIR__) . '/vendor')) {
+    throw new LogicException('Dependencies are missing. Try running "composer install".');
+}
+
+if (!is_file(dirname(__DIR__) . '/vendor/bin/rector')) {
+    throw new LogicException('Rector dependency is missing. Try running "composer require rector/rector --dev".');
+}
+
+require_once dirname(__DIR__) . '/vendor/bin/rector';

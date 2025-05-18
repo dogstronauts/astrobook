@@ -1,0 +1,139 @@
+{
+    "name": "dogstronauts/astrobook",
+    "type": "project",
+    "description": "Forged in the legacy of Sirius, AstroBook guides the Dogstronauts in planning missions and reserving celestial resources — a powerful system that centralizes event coordination and resource management across the galaxy.",
+    "keywords": [
+        "api",
+        "events",
+        "management",
+        "symfony",
+        "api-platform"
+    ],
+    "homepage": "https://astrobook.dogstronauts.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David Pelletier-Ulrich",
+            "email": "d@mztrix.me",
+            "homepage": "https://github.com/mztrix"
+        },
+        {
+            "name": "AstroBook Community",
+            "homepage": "https://astrobook.dogstronauts.com/contributors"
+        }
+    ],
+    "support": {
+        "email": "de25259ab1817bd62da981f2@dogstronauts.com",
+        "issues": "https://github.com/dogstronauts/astrobook/issues",
+        "source": "https://github.com/dogstronauts/astrobook"
+    },
+    "require": {
+        "php": ">=8.4",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "api-platform/doctrine-orm": "^4.1",
+        "api-platform/symfony": "^4.1",
+        "doctrine/dbal": "^4.2",
+        "doctrine/doctrine-bundle": "^2.14",
+        "doctrine/doctrine-migrations-bundle": "^3.4",
+        "doctrine/orm": "^3.3",
+        "gesdinet/jwt-refresh-token-bundle": "^1.4",
+        "lexik/jwt-authentication-bundle": "^3.1",
+        "nelmio/cors-bundle": "^2.5",
+        "phpdocumentor/reflection-docblock": "^5.6",
+        "phpstan/phpdoc-parser": "^2.1",
+        "symfony/asset": "7.3.*",
+        "symfony/console": "7.3.*",
+        "symfony/dotenv": "7.3.*",
+        "symfony/expression-language": "7.3.*",
+        "symfony/flex": "^2.7",
+        "symfony/framework-bundle": "7.3.*",
+        "symfony/monolog-bundle": "^3.10",
+        "symfony/property-access": "7.3.*",
+        "symfony/property-info": "7.3.*",
+        "symfony/runtime": "7.3.*",
+        "symfony/security-bundle": "7.3.*",
+        "symfony/serializer": "7.3.*",
+        "symfony/twig-bundle": "7.3.*",
+        "symfony/validator": "7.3.*",
+        "symfony/yaml": "7.3.*"
+    },
+    "replace": {
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php72": "*",
+        "symfony/polyfill-php73": "*",
+        "symfony/polyfill-php74": "*",
+        "symfony/polyfill-php80": "*",
+        "symfony/polyfill-php81": "*",
+        "symfony/polyfill-php82": "*",
+        "symfony/polyfill-php83": "*"
+    },
+    "require-dev": {
+        "dama/doctrine-test-bundle": "^8.3",
+        "doctrine/doctrine-fixtures-bundle": "^4.1",
+        "friendsofphp/php-cs-fixer": "^3.75",
+        "mtdowling/jmespath.php": "^2.8",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-doctrine": "^2.0",
+        "phpstan/phpstan-symfony": "^2.0",
+        "phpunit/phpunit": "^12.1",
+        "rector/rector": "^2.0",
+        "symfony/maker-bundle": "^1.63",
+        "symfony/phpunit-bridge": "^7.3",
+        "symfony/stopwatch": "7.3.*",
+        "symfony/web-profiler-bundle": "7.3.*",
+        "zenstruck/browser": "^1.9",
+        "zenstruck/foundry": "^2.5"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
+        },
+        "bump-after-update": false,
+        "sort-packages": false
+    },
+    "autoload": {
+        "psr-4": {
+            "Dogstronauts\\AstroBook\\": "src/",
+            "Dogstronauts\\AstroBook\\Fixtures\\": "fixtures/",
+            "Dogstronauts\\AstroBook\\DoctrineMigrations\\": "migrations/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Dogstronauts\\AstroBook\\Tests\\": "tests/"
+        }
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": true,
+            "require": "7.3.*",
+            "docker": true
+        }
+    },
+    "scripts": {
+        "run:export-doc": "docker run --rm -v $(pwd):/data -w /data phpdoc/phpdoc",
+        "run:export-openapi-doc": "bin/console api:openapi:export > openapi.json",
+        "run:php-cs-fixer": "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --config .php-cs-fixer.dist.php",
+        "run:rector": "bin/rector",
+        "run:tests": "bin/phpunit --testdox",
+        "run:fixtures": "bin/console d:f:l -n",
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
+    "minimum-stability": "stable"
+}

@@ -1,0 +1,7 @@
+x-app-nginx-attributes: &app-nginx-attributes
+  image: ${IMAGES_PREFIX:-}app-nginx
+  ports:
+    - "8080:80"
+
+services:
+  app-nginx: *app-nginx-attributes

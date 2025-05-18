@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+
+if (!is_dir(dirname(__DIR__) . '/vendor')) {
+    throw new LogicException('Dependencies are missing. Try running "composer install".');
+}
+
+if (!is_file(dirname(__DIR__) . '/vendor/bin/phpunit')) {
+    throw new LogicException('Phpunit dependency is missing. Try running "composer require symfony/phpunit-bridge --dev".');
+}
+
+if (!ini_get('date.timezone')) {
+    ini_set('date.timezone', 'UTC');
+}
+
+require_once dirname(__DIR__) . '/vendor/bin/phpunit';

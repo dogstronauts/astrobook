@@ -1,0 +1,16 @@
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/public/docs/
+/var/
+/vendor/
+/config/jwt/*.pem
+/phpunit.xml
+/phpstan.neon
+/compose.override.yaml
+/.phpunit.cache
+/.phpdoc.cache
+/.php-cs-fixer.php
+/.php-cs-fixer.cache

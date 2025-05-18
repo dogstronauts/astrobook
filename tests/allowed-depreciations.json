@@ -1,0 +1,167 @@
+[
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetCollectionSuccess",
+        "message": "Since symfony/var-exporter 7.3: Generating lazy proxy for class \"Dogstronauts\\AstroBook\\Security\\Model\\User\" is deprecated; leverage native lazy objects instead.",
+        "count": 1
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetCollectionSuccess",
+        "message": "Since symfony/var-exporter 7.3: The \"Symfony\\Component\\VarExporter\\LazyProxyTrait\" trait is deprecated, use native lazy objects instead.",
+        "count": 1
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetCollectionSuccess",
+        "message": "Since gesdinet/jwt-refresh-token-bundle 1.0: The \"Gesdinet\\JWTRefreshTokenBundle\\Entity\\AbstractRefreshToken\" class is deprecated, use \"Gesdinet\\JWTRefreshTokenBundle\\Model\\AbstractRefreshToken\" instead.",
+        "count": 1
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetCollectionSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\PropertyInfoExtractor::getTypes()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\PropertyInfoExtractor::getType()\" instead.",
+        "count": 9
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetCollectionSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\ConstructorExtractor::getTypes()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\ConstructorExtractor::getType()\" instead.",
+        "count": 9
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetCollectionSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpStanExtractor::getTypesFromConstructor()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpStanExtractor::getTypeFromConstructor()\" instead.",
+        "count": 9
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetCollectionSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpDocExtractor::getTypesFromConstructor()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpDocExtractor::getTypeFromConstructor()\" instead.",
+        "count": 9
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetCollectionSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\ReflectionExtractor::getTypesFromConstructor()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\ReflectionExtractor::getTypeFromConstructor()\" instead.",
+        "count": 9
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetCollectionSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Bridge\\Doctrine\\PropertyInfo\\DoctrineExtractor::getTypes()\" method is deprecated, use \"Symfony\\Bridge\\Doctrine\\PropertyInfo\\DoctrineExtractor::getType()\" instead.",
+        "count": 9
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetCollectionSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpStanExtractor::getTypes()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpStanExtractor::getType()\" instead.",
+        "count": 6
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetCollectionSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpDocExtractor::getTypes()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpDocExtractor::getType()\" instead.",
+        "count": 4
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetCollectionSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\ReflectionExtractor::getTypes()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\ReflectionExtractor::getType()\" instead.",
+        "count": 4
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetCollectionSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Type\" class is deprecated. Use \"Symfony\\Component\\TypeInfo\\Type\" class from \"symfony/type-info\" instead.",
+        "count": 1
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetCollectionSuccess",
+        "message": "Gesdinet\\JWTRefreshTokenBundle\\Security\\Http\\Authenticator\\RefreshTokenAuthenticator::start(): Implicitly marking parameter $authException as nullable is deprecated, the explicit nullable type must be used instead",
+        "count": 1
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\PropertyInfoExtractor::getTypes()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\PropertyInfoExtractor::getType()\" instead.",
+        "count": 3
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\ConstructorExtractor::getTypes()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\ConstructorExtractor::getType()\" instead.",
+        "count": 3
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpStanExtractor::getTypesFromConstructor()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpStanExtractor::getTypeFromConstructor()\" instead.",
+        "count": 3
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpDocExtractor::getTypesFromConstructor()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpDocExtractor::getTypeFromConstructor()\" instead.",
+        "count": 3
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\ReflectionExtractor::getTypesFromConstructor()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\ReflectionExtractor::getTypeFromConstructor()\" instead.",
+        "count": 3
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Bridge\\Doctrine\\PropertyInfo\\DoctrineExtractor::getTypes()\" method is deprecated, use \"Symfony\\Bridge\\Doctrine\\PropertyInfo\\DoctrineExtractor::getType()\" instead.",
+        "count": 3
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpStanExtractor::getTypes()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpStanExtractor::getType()\" instead.",
+        "count": 2
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpDocExtractor::getTypes()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpDocExtractor::getType()\" instead.",
+        "count": 1
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testGetSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\ReflectionExtractor::getTypes()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\ReflectionExtractor::getType()\" instead.",
+        "count": 1
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testPostSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\PropertyInfoExtractor::getTypes()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\PropertyInfoExtractor::getType()\" instead.",
+        "count": 3
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testPostSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\ConstructorExtractor::getTypes()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\ConstructorExtractor::getType()\" instead.",
+        "count": 3
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testPostSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpStanExtractor::getTypesFromConstructor()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpStanExtractor::getTypeFromConstructor()\" instead.",
+        "count": 3
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testPostSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpDocExtractor::getTypesFromConstructor()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpDocExtractor::getTypeFromConstructor()\" instead.",
+        "count": 3
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testPostSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\ReflectionExtractor::getTypesFromConstructor()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\ReflectionExtractor::getTypeFromConstructor()\" instead.",
+        "count": 3
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testPostSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Bridge\\Doctrine\\PropertyInfo\\DoctrineExtractor::getTypes()\" method is deprecated, use \"Symfony\\Bridge\\Doctrine\\PropertyInfo\\DoctrineExtractor::getType()\" instead.",
+        "count": 3
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testPostSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpStanExtractor::getTypes()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpStanExtractor::getType()\" instead.",
+        "count": 2
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testPostSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpDocExtractor::getTypes()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\PhpDocExtractor::getType()\" instead.",
+        "count": 1
+    },
+    {
+        "location": "Dogstronauts\\AstroBook\\Tests\\Functional\\UserEndpointTest::testPostSuccess",
+        "message": "Since symfony/property-info 7.3: The \"Symfony\\Component\\PropertyInfo\\Extractor\\ReflectionExtractor::getTypes()\" method is deprecated, use \"Symfony\\Component\\PropertyInfo\\Extractor\\ReflectionExtractor::getType()\" instead.",
+        "count": 1
+    },
+    {
+        "location": "ApiPlatform\\Hydra\\Serializer\\HydraPrefixNameConverter",
+        "message": "The \"ApiPlatform\\Hydra\\Serializer\\HydraPrefixNameConverter\" class implements \"Symfony\\Component\\Serializer\\NameConverter\\AdvancedNameConverterInterface\" that is deprecated since Symfony 7.2, use NameConverterInterface instead.",
+        "count": 1
+    }
+]

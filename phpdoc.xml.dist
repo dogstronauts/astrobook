@@ -1,0 +1,29 @@
+<phpdocumentor configVersion="3.0">
+    <title>AstroBook API</title>
+
+    <paths>
+        <output>public/docs</output>
+        <cache>.phpdoc.cache</cache>
+    </paths>
+
+    <templates>
+        <template name="clean" />
+    </templates>
+
+    <versions>
+        <version number="1.0">
+            <api format="php">
+                <source dsn="./src">
+                    <path>Entity</path>
+                </source>
+                <ignore hidden="true" symlinks="true">
+                    <path>tests/**/*</path>
+                </ignore>
+                <extensions>
+                    <extension>php</extension>
+                </extensions>
+                <visibility>public</visibility>
+            </api>
+        </version>
+    </versions>
+</phpdocumentor>
