@@ -80,11 +80,10 @@
         "phpunit/phpunit": "^12.1",
         "rector/rector": "^2.0",
         "symfony/maker-bundle": "^1.63",
-        "symfony/phpunit-bridge": "^7.3",
         "symfony/stopwatch": "7.3.*",
         "symfony/web-profiler-bundle": "7.3.*",
         "zenstruck/browser": "^1.9",
-        "zenstruck/foundry": "^2.5"
+        "zenstruck/foundry": "^2.6"
     },
     "config": {
         "allow-plugins": {
@@ -123,7 +122,7 @@
         "run:php-cs-fixer": "@php -r \"putenv('PHP_CS_FIXER_IGNORE_ENV=1'); passthru('php vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php');\"",
         "run:rector": "php bin/rector",
         "run:tests": "php bin/phpunit --testdox",
-        "run:fixtures": "php bin/console d:f:l -n",
+        "run:fixtures": "php bin/console f:l -n",
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"

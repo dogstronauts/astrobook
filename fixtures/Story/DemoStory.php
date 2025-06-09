@@ -12,13 +12,15 @@ declare(strict_types=1);
 namespace Dogstronauts\AstroBook\Fixtures\Story;
 
 use Dogstronauts\AstroBook\Fixtures\Factory\UserFactory;
+use Zenstruck\Foundry\Attribute\AsFixture;
 use Zenstruck\Foundry\Story;
 
+#[AsFixture(name: 'demo')]
 final class DemoStory extends Story
 {
     public function build(): void
     {
         // create a user
-        $userProxy = UserFactory::createOne(['identifier' => 'demo@demo.fr', 'password' => 'demo1234%']);
+        UserFactory::createOne(['identifier' => 'demo@demo.fr', 'password' => 'demo1234%']);
     }
 }
