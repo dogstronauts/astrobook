@@ -33,11 +33,11 @@ class EventFactory extends PersistentProxyObjectFactory
         $endDateTime = self::faker()->dateTimeBetween('+2 week', '+3 week');
 
         $startImmutable = \DateTimeImmutable::createFromMutable($startDateTime);
-        $endImmutable   = \DateTimeImmutable::createFromMutable($endDateTime);
+        $endImmutable = \DateTimeImmutable::createFromMutable($endDateTime);
 
         // Duration in minutes
         $interval = $startImmutable->diff($endImmutable);
-        $minutes  = $interval->days * 24 * 60
+        $minutes = $interval->days * 24 * 60
             + $interval->h * 60
             + $interval->i;
 

@@ -13,8 +13,9 @@ namespace Dogstronauts\AstroBook\Fixtures\Story;
 
 use Dogstronauts\AstroBook\Fixtures\Factory\EventFactory;
 use Dogstronauts\AstroBook\Fixtures\Factory\UserFactory;
-use function Zenstruck\Foundry\faker;
 use Zenstruck\Foundry\Story;
+
+use function Zenstruck\Foundry\faker;
 
 final class DemoStory extends Story
 {
@@ -26,19 +27,19 @@ final class DemoStory extends Story
         // create few events
         $events = [
             'Lunar Bone Expedition' => 'Mission to explore and retrieve valuable artifacts from the lunar surface.',
-            'Mars Fetch Mission'    => 'Long-term expedition to explore the red planet and retrieve Martian samples.',
-            'Asteroid Belt Patrol'  => 'Security mission to monitor and protect the outer reaches of our solar system.',
-            'Zero-G Tail Wag'             => 'Demonstration event where dogstronauts test their zero-gravity maneuvering and celebrate with a cosmic tail-wag.',
-            'Galactic Kennel Conference'  => 'Interstellar summit gathering top space-trained canines to share findings on alien bones and bone-based propulsion.',
+            'Mars Fetch Mission' => 'Long-term expedition to explore the red planet and retrieve Martian samples.',
+            'Asteroid Belt Patrol' => 'Security mission to monitor and protect the outer reaches of our solar system.',
+            'Zero-G Tail Wag' => 'Demonstration event where dogstronauts test their zero-gravity maneuvering and celebrate with a cosmic tail-wag.',
+            'Galactic Kennel Conference' => 'Interstellar summit gathering top space-trained canines to share findings on alien bones and bone-based propulsion.',
         ];
 
         foreach ($events as $label => $description) {
             EventFactory::createOne([
-                'label'       => $label,
+                'label' => $label,
                 'description' => $description,
-                'startAt'     => new \DateTimeImmutable('+1 days'),
-                'endAt'     => new \DateTimeImmutable('+3 days'),
-                'status'      => faker()->randomElement(\Dogstronauts\AstroBook\Events\Enum\EventStatus::cases()),
+                'startAt' => new \DateTimeImmutable('+1 days'),
+                'endAt' => new \DateTimeImmutable('+3 days'),
+                'status' => faker()->randomElement(\Dogstronauts\AstroBook\Events\Enum\EventStatus::cases()),
             ]);
         }
     }
