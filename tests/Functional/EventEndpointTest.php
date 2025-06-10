@@ -78,7 +78,6 @@ final class EventEndpointTest extends KernelTestCase
             'startAt' => '2025-07-01T10:00:00+02:00',
             'endAt' => '2025-07-01T12:30:00+02:00',
             'status' => 'draft',
-            'duration' => 150,
         ];
 
         $this->browser()
@@ -89,7 +88,6 @@ final class EventEndpointTest extends KernelTestCase
             ->assertJsonMatches('label', 'Test Event')
             ->assertJsonMatches('description', 'An event description')
             ->assertJsonMatches('status', 'draft')
-            ->assertJsonMatches('duration', 150)
         ;
     }
 

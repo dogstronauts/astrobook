@@ -54,6 +54,10 @@ use Symfony\Component\Validator\Constraints as Assert;
         ),
     ],
 )]
+#[Assert\Expression(
+    "this.getStartAt() < this.getEndAt()",
+    message: "The start date must be before the end date."
+)]
 class Event
 {
     #[ORM\Id]
@@ -93,6 +97,55 @@ class Event
     #[ORM\Column(type: Types::INTEGER)]
     #[Assert\NotNull]
     #[Assert\PositiveOrZero]
-    #[Serializer\Groups(['event:read', 'event:write'])]
-    public int $duration;
+    #[Serializer\Groups(['event:read'])]
+    public int $duration = 0;
+
+    public function getStartAt(): \DateTimeImmutable
+    {
+        return $this->startAt;
+    }
+
+    public function setStartAt(\DateTimeImmutable $startAt): self
+    {
+        $this->startAt = $startAt;
+        return $this;
+    }
+
+    public function getEndAt(): \DateTimeImmutable
+    {
+        return $this->endAt;
+    }
+
+    public function setEndAt(\DateTimeImmutable $endAt): self
+    {
+        $this->endAt = $endAt;
+        return $this;
+    }
+
+    public function getDuration(): int
+    {
+        return $this->duration;
+    }
+
+    /**
+     * Duration in minutes
+     */
+    private function updateDuration(): void
+    {
+        if (
+            isset($this->startAt) && $this->startAt instanceof \DateTimeImmutable &&
+            isset($this->endAt) && $this->endAt instanceof \DateTimeImmutable
+        ) {
+            $this->duration = max(0, (int)(($this->endAt->getTimestamp() - $this->startAt->getTimestamp()) / 60));
+        } else {
+            $this->duration = 0;
+        }
+    }
+
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function lifecycleUpdateDuration(): void
+    {
+        $this->updateDuration();
+    }
 }
