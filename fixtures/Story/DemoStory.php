@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Dogstronauts\AstroBook\Fixtures\Story;
 
+use Dogstronauts\AstroBook\Fixtures\Factory\EventFactory;
 use Dogstronauts\AstroBook\Fixtures\Factory\UserFactory;
 use Zenstruck\Foundry\Story;
 
@@ -20,5 +21,7 @@ final class DemoStory extends Story
     {
         // create a user
         $userProxy = UserFactory::createOne(['identifier' => 'demo@demo.fr', 'password' => 'demo1234%']);
+
+        $events = EventFactory::createMany(5);
     }
 }
