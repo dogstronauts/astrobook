@@ -30,6 +30,13 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ],
             'auto_mapping' => true,
             'mappings' => [
+                'Shared' => [
+                    'type' => 'attribute',
+                    'is_bundle' => false,
+                    'dir' => '%kernel.project_dir%/src/Shared/Model',
+                    'prefix' => 'Dogstronauts\AstroBook\Shared\Model',
+                    'alias' => 'Shared',
+                ],
                 'Security' => [
                     'type' => 'attribute',
                     'is_bundle' => false,
