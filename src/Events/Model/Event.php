@@ -4,22 +4,27 @@ declare(strict_types=1);
 
 /*
  * This file is part of the AstroBook project.
- * (c) Damien Lebon <damienlebon.ifpa@gmail.com>
+ * (c) David Pelletier-Ulrich <d@mztrix.me>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
 namespace Dogstronauts\AstroBook\Events\Model;
 
-use ApiPlatform\Metadata as ApiMetadata;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Dogstronauts\AstroBook\Events\Enum\EventStatus;
 use Symfony\Bridge\Doctrine\IdGenerator\UlidGenerator;
 use Symfony\Bridge\Doctrine\Types\UlidType;
-use Dogstronauts\AstroBook\Events\Enum\EventStatus;
 use Symfony\Component\Serializer\Attribute as Serializer;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Uid\Ulid;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Represents a event ressource in the application.
@@ -29,23 +34,24 @@ use Symfony\Component\Uid\Ulid;
  */
 #[ORM\Entity]
 #[ORM\Table(name: '`event`')]
-#[ApiMetadata\ApiResource(
+#[ApiResource(
     normalizationContext: ['groups' => ['event:read']],
     denormalizationContext: ['groups' => ['event:write']],
     operations: [
-        'get',
-        'post' => [
-            'security' => "is_granted('ROLE_PLATFORM')",
-            'securityMessage' => 'Only users with ROLE_PLATFORM can create events.',
-        ],
-        'patch' => [
-            'security' => "is_granted('ROLE_PLATFORM')",
-            'securityMessage' => 'Only users with ROLE_PLATFORM can update events.',
-        ],
-        'delete' => [
-            'security' => "is_granted('ROLE_PLATFORM')",
-            'securityMessage' => 'Only users with ROLE_PLATFORM can delete events.',
-        ],
+        new Get(),
+        new GetCollection(),
+        new Post(
+            security: "is_granted('ROLE_PLATFORM')",
+            securityMessage: 'Only users with ROLE_PLATFORM can create events.'
+        ),
+        new Patch(
+            security: "is_granted('ROLE_PLATFORM')",
+            securityMessage: 'Only users with ROLE_PLATFORM can update events.'
+        ),
+        new Delete(
+            security: "is_granted('ROLE_PLATFORM')",
+            securityMessage: 'Only users with ROLE_PLATFORM can delete events.'
+        ),
     ],
 )]
 class Event

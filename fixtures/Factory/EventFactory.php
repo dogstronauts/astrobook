@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 /*
  * This file is part of the AstroBook project.
- * (c) Damien Lebon <damienlebon.ifpa@gmail.com>
+ * (c) David Pelletier-Ulrich <d@mztrix.me>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -29,17 +29,25 @@ class EventFactory extends PersistentProxyObjectFactory
 
     protected function defaults(): array
     {
-        $start = self::faker()->dateTimeBetween('-1 week', '+1 week');
-        $end = self::faker()->dateTimeBetween('+2 week', '+3 week');
-        $duration = self::faker()->numberBetween(30, 480);
+        $startDateTime = self::faker()->dateTimeBetween('-1 week', '+1 week');
+        $endDateTime = self::faker()->dateTimeBetween('+2 week', '+3 week');
+
+        $startImmutable = \DateTimeImmutable::createFromMutable($startDateTime);
+        $endImmutable   = \DateTimeImmutable::createFromMutable($endDateTime);
+
+        // Duration in minutes
+        $interval = $startImmutable->diff($endImmutable);
+        $minutes  = $interval->days * 24 * 60
+            + $interval->h * 60
+            + $interval->i;
 
         return [
-            'label'       => self::faker()->sentence(3),
+            'label' => self::faker()->sentence(3),
             'description' => self::faker()->optional()->paragraph(),
-            'startAt'     => \DateTimeImmutable::createFromMutable($start),
-            'endAt'     => \DateTimeImmutable::createFromMutable($end),
-            'duration'    => $duration,
-            'status'      => self::faker()->randomElement(EventStatus::cases()),
+            'startAt' => $startImmutable,
+            'endAt' => $endImmutable,
+            'duration' => $minutes,
+            'status' => self::faker()->randomElement(EventStatus::cases()),
         ];
     }
 }
