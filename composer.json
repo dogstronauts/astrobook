@@ -84,7 +84,7 @@
         "symfony/stopwatch": "7.3.*",
         "symfony/web-profiler-bundle": "7.3.*",
         "zenstruck/browser": "^1.9",
-        "zenstruck/foundry": "^2.5"
+        "zenstruck/foundry": "^2.6"
     },
     "config": {
         "allow-plugins": {
