@@ -36,7 +36,7 @@ class UserFactory extends PersistentProxyObjectFactory
     {
         return [
             'identifier' => self::faker()->text(128),
-            'password' => '$ecr$tPa$$word',
+            'plainPassword' => '$ecr$tPa$$word',
             'roles' => [],
         ];
     }
@@ -44,7 +44,7 @@ class UserFactory extends PersistentProxyObjectFactory
     protected function initialize(): static
     {
         return $this->afterInstantiate(function (User $user): void {
-            $user->password = $this->userPasswordHasher->hashPassword($user, $user->getPassword());
+            $user->password = $this->userPasswordHasher->hashPassword($user, $user->plainPassword);
         });
     }
 }
