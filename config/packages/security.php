@@ -58,6 +58,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 'method' => 'POST',
             ],
             [
+                'path' => '^/events',
+                'roles' => 'PUBLIC_ACCESS',
+                'method' => 'GET',
+            ],
+            [
                 'path' => '^/',
                 'roles' => 'IS_AUTHENTICATED_FULLY',
             ],
