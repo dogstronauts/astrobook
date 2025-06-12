@@ -37,6 +37,13 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                     'prefix' => 'Dogstronauts\AstroBook\Security\Model',
                     'alias' => 'Security',
                 ],
+                'Resources' => [
+                    'type' => 'attribute',
+                    'is_bundle' => false,
+                    'dir' => '%kernel.project_dir%/src/Resources/Model',
+                    'prefix' => 'Dogstronauts\AstroBook\Resources\Model',
+                    'alias' => 'Resources',
+                ],
             ],
             'controller_resolver' => [
                 'auto_mapping' => false,
