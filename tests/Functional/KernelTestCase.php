@@ -26,9 +26,17 @@ abstract class KernelTestCase extends baseKernelTestCase
     use Factories;
     use HasBrowser;
 
-    protected function createUser(): User
-    {
-        return UserFactory::createOne(['identifier' => 'test@example.com', 'password' => '$3CR3T'])->_real();
+    protected function createUser(
+        string $identifier = 'test@example.com',
+        #[\SensitiveParameter]
+        string $plainPassword = '$3CR3T',
+        array $roles = ['ROLE_USER'],
+    ): User {
+        return UserFactory::createOne([
+            'identifier' => $identifier,
+            'password' => $plainPassword,
+            'roles' => $roles,
+        ]);
     }
 
     protected function getIriFromResource(object $resource): ?string
