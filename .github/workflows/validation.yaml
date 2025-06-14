@@ -1,0 +1,23 @@
+name: Validation
+
+on:
+  push:
+    branches: [ '1.0' ]
+  pull_request:
+    branches: [ '1.0' ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-composer:
+    name: Validate composer.json
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate composer.json
+        run: composer validate --strict
