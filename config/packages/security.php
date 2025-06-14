@@ -58,7 +58,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 'method' => 'POST',
             ],
             [
-                'path' => '^/events',
+                'path' => '^/(taxonomies|events)',
                 'roles' => 'PUBLIC_ACCESS',
                 'method' => 'GET',
             ],

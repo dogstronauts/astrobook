@@ -13,7 +13,9 @@ namespace Dogstronauts\AstroBook\Fixtures\Story;
 
 use Dogstronauts\AstroBook\Events\Model\EventStatus;
 use Dogstronauts\AstroBook\Fixtures\Factory\EventFactory;
+use Dogstronauts\AstroBook\Fixtures\Factory\TaxonomyFactory;
 use Dogstronauts\AstroBook\Fixtures\Factory\UserFactory;
+use Dogstronauts\AstroBook\Shared\Model\Taxonomy;
 use Zenstruck\Foundry\Attribute\AsFixture;
 use Zenstruck\Foundry\Story;
 
@@ -65,5 +67,63 @@ final class DemoStory extends Story
                 'status' => EventStatus::DRAFT,
             ],
         ])->create();
+
+        // Create parent taxonomies
+        $species = TaxonomyFactory::createOne([
+            'label' => 'Dog Species',
+            'description' => 'Different dog species in the Dogstronauts universe',
+        ]);
+
+        $ranks = TaxonomyFactory::createOne([
+            'label' => 'Space Ranks',
+            'description' => 'Hierarchy of ranks in the Dogstronauts space program',
+        ]);
+
+        $missions = TaxonomyFactory::createOne([
+            'label' => 'Space Missions',
+            'description' => 'Types of missions in the Dogstronauts space program',
+        ]);
+
+        // Create child taxonomies
+        $this->createChildTaxonomies($species, [
+            'Labrador Astronaut' => 'Brave and loyal space explorers known for their retrieval skills.',
+            'German Shepherd Navigator' => 'Intelligent and disciplined navigators with exceptional spatial awareness.',
+            'Beagle Explorer' => 'Curious and determined explorers with a keen sense of discovery.',
+        ]);
+
+        $this->createChildTaxonomies($ranks, [
+            'Space Cadet' => 'Entry-level position for aspiring space dogs.',
+            'Mission Specialist' => 'Specialized role focusing on specific mission aspects.',
+            'Flight Commander' => 'Leadership position responsible for mission success.',
+            'Space Admiral' => 'Highest rank in the Dogstronauts space program.',
+        ]);
+
+        $this->createChildTaxonomies($missions, [
+            'Lunar Bone Expedition' => 'Mission to explore and retrieve valuable artifacts from the lunar surface.',
+            'Mars Fetch Mission' => 'Long-term expedition to explore the red planet and retrieve Martian samples.',
+            'Asteroid Belt Patrol' => 'Security mission to monitor and protect the outer reaches of our solar system.',
+        ]);
+    }
+
+    /**
+     * Creates child taxonomies for a parent taxonomy.
+     *
+     * @param Taxonomy              $parent              The parent taxonomy
+     * @param array<string, string> $labelDescriptionMap Map of labels to descriptions
+     */
+    private function createChildTaxonomies(Taxonomy $parent, array $labelDescriptionMap): void
+    {
+        $attributes = [];
+        foreach ($labelDescriptionMap as $label => $description) {
+            $attributes[] = [
+                'parent' => $parent,
+                'label' => $label,
+                'description' => $description,
+            ];
+        }
+
+        TaxonomyFactory::createMany(count($labelDescriptionMap), function (int $i) use (&$attributes) {
+            return $attributes[$i - 1];
+        });
     }
 }
