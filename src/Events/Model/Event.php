@@ -19,6 +19,8 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Dogstronauts\AstroBook\Shared\Model\SoftDeletableInterface;
+use Dogstronauts\AstroBook\Shared\Model\SoftDeletableTrait;
 use Symfony\Bridge\Doctrine\IdGenerator\UlidGenerator;
 use Symfony\Bridge\Doctrine\Types\UlidType;
 use Symfony\Component\Serializer\Attribute as Serializer;
@@ -41,8 +43,10 @@ use Symfony\Component\Validator\Constraints as Assert;
     normalizationContext: ['groups' => ['event:read']],
     denormalizationContext: ['groups' => ['event:write']],
 )]
-class Event
+class Event implements SoftDeletableInterface
 {
+    use SoftDeletableTrait;
+
     #[ORM\Id]
     #[ORM\Column(type: UlidType::NAME)]
     #[ORM\CustomIdGenerator(class: UlidGenerator::class)]

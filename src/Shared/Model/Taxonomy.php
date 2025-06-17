@@ -42,8 +42,10 @@ use Symfony\Component\Validator\Constraints as Assert;
     denormalizationContext: ['groups' => ['taxonomy:write']],
     openapi: new Operation(tags: ['Taxonomy', 'Shared']),
 )]
-class Taxonomy
+class Taxonomy implements SoftDeletableInterface
 {
+    use SoftDeletableTrait;
+
     #[ORM\Id]
     #[ORM\Column(type: UlidType::NAME)]
     #[ORM\CustomIdGenerator(class: UlidGenerator::class)]
@@ -61,7 +63,7 @@ class Taxonomy
     #[Serializer\Groups(['taxonomy:read', 'taxonomy:write'])]
     public ?string $description = null;
 
-    #[ORM\ManyToOne(targetEntity: self::class)]
+    #[ORM\ManyToOne(targetEntity: self::class, cascade: ['remove'])]
     #[ORM\JoinColumn(nullable: true)]
     #[Serializer\Groups(['taxonomy:read', 'taxonomy:write'])]
     #[ApiMetadata\ApiProperty(readableLink: false)]
