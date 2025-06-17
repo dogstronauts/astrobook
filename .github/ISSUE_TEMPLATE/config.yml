@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Support Question
+    url: https://astrobook.dogstronauts.com/support
+    about: We use GitHub issues only to discuss about Astrobook bugs and new features. For this kind of questions about using Astrobook, please use any of the support alternatives shown in https://astrobook.dogstronauts.com/support
+  - name: Documentation Issue
+    url: https://github.com/dogstronauts/astrobook-docs/issues
+    about: Astrobook Documentation has its own dedicated repository.
