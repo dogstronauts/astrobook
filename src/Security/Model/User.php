@@ -16,6 +16,8 @@ use ApiPlatform\OpenApi\Model\Operation;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Dogstronauts\AstroBook\Security\ApiPlatform\State\UserProcessor;
+use Dogstronauts\AstroBook\Shared\Model\SoftDeletableInterface;
+use Dogstronauts\AstroBook\Shared\Model\SoftDeletableTrait;
 use Symfony\Bridge\Doctrine\IdGenerator\UlidGenerator;
 use Symfony\Bridge\Doctrine\Types\UlidType;
 use Symfony\Bridge\Doctrine\Validator\Constraints as DoctrineAssert;
@@ -41,8 +43,10 @@ use Symfony\Component\Validator\Constraints\PasswordStrength;
     openapi: new Operation(tags: ['Security']),
     processor: UserProcessor::class,
 )]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, SoftDeletableInterface
 {
+    use SoftDeletableTrait;
+
     #[ORM\Id]
     #[ORM\Column(type: UlidType::NAME)]
     #[ORM\CustomIdGenerator(class: UlidGenerator::class)]

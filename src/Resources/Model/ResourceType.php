@@ -14,6 +14,8 @@ namespace Dogstronauts\AstroBook\Resources\Model;
 use ApiPlatform\Metadata as ApiMetadata;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Dogstronauts\AstroBook\Shared\Model\SoftDeletableInterface;
+use Dogstronauts\AstroBook\Shared\Model\SoftDeletableTrait;
 use Symfony\Bridge\Doctrine\IdGenerator\UlidGenerator;
 use Symfony\Bridge\Doctrine\Types\UlidType;
 use Symfony\Component\Serializer\Attribute as Serializer;
@@ -32,8 +34,10 @@ use Symfony\Component\Validator\Constraints as Assert;
     denormalizationContext: ['groups' => ['resource-type:write']],
     security: 'is_granted("ROLE_PLATFORM")'
 )]
-class ResourceType
+class ResourceType implements SoftDeletableInterface
 {
+    use SoftDeletableTrait;
+
     #[ORM\Id]
     #[ORM\Column(type: UlidType::NAME)]
     #[ORM\GeneratedValue('CUSTOM')]

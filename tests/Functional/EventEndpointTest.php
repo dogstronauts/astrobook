@@ -156,10 +156,41 @@ final class EventEndpointTest extends KernelTestCase
     {
         $eventIri = $this->getIriFromResource(EventFactory::createOne());
 
-        $this->browser()
-            ->actingAs($this->createUser(roles: ['ROLE_PLATFORM']))
+        $user = $this->createUser(roles: ['ROLE_PLATFORM']);
+
+        $this->browser()->actingAs($user)
             ->delete($eventIri)
             ->assertStatus(Response::HTTP_NO_CONTENT)
+        ;
+
+        $this->browser()->actingAs($user)
+            ->get('/events')
+            ->assertJson()
+            ->assertStatus(Response::HTTP_OK)
+            ->assertJsonMatches('"@context"', '/contexts/Event')
+            ->assertJsonMatches('"@id"', '/events')
+            ->assertJsonMatches('"@type"', 'Collection')
+            ->assertJsonMatches('totalItems', 0)
+        ;
+
+        $this->browser()->actingAs($user)
+            ->get('/events', ['query' => ['deleted' => true]])
+            ->assertJson()
+            ->assertStatus(Response::HTTP_OK)
+            ->assertJsonMatches('"@context"', '/contexts/Event')
+            ->assertJsonMatches('"@id"', '/events')
+            ->assertJsonMatches('"@type"', 'Collection')
+            ->assertJsonMatches('totalItems', 1)
+        ;
+
+        $this->browser()->actingAs($this->createUser(identifier: 'no', plainPassword: 'role', roles: ['NO_ROLE']))
+            ->get('/events', ['query' => ['deleted' => true]])
+            ->assertJson()
+            ->assertStatus(Response::HTTP_OK)
+            ->assertJsonMatches('"@context"', '/contexts/Event')
+            ->assertJsonMatches('"@id"', '/events')
+            ->assertJsonMatches('"@type"', 'Collection')
+            ->assertJsonMatches('totalItems', 0)
         ;
     }
 
