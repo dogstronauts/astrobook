@@ -27,7 +27,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             __DIR__ . '/../src/Entity',
             __DIR__ . '/../src/Kernel.php',
             __DIR__ . '/../src/Security/DependencyInjection',
-            __DIR__ . '/../src/Security/Model',
+            __DIR__ . '/../src/Auth/Model',
             __DIR__ . '/../src/Fields/DependencyInjection',
             __DIR__ . '/../src/Fields/Model',
         ])

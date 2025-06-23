@@ -473,6 +473,10 @@
         <source>This value is not a valid Twig template.</source>
         <target>This value is not a valid Twig template.</target>
       </trans-unit>
+      <trans-unit id="RtILCT4" resname="passwords do not match">
+        <source>passwords do not match</source>
+        <target>Passwords do not match</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

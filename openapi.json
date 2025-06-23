@@ -26,6 +26,90 @@
         }
     ],
     "paths": {
+        "/auth/password_reset_requests": {
+            "post": {
+                "operationId": "api_authpassword_reset_requests_post",
+                "tags": [
+                    "Auth"
+                ],
+                "responses": {
+                    "204": {
+                        "description": "PasswordResetRequest resource created",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {}
+                            },
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error.jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "422": {
+                        "description": "An error occurred",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation.jsonld-jsonld"
+                                }
+                            },
+                            "application/problem+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation-json"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConstraintViolation-json"
+                                }
+                            }
+                        },
+                        "links": {}
+                    }
+                },
+                "summary": "Creates a PasswordResetRequest resource.",
+                "description": "Creates a PasswordResetRequest resource.",
+                "parameters": [],
+                "requestBody": {
+                    "description": "The new PasswordResetRequest resource",
+                    "content": {
+                        "application/ld+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PasswordResetRequest.jsonld-password-reset-request.write"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PasswordResetRequest-password-reset-request.write"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "deprecated": false
+            }
+        },
         "/auth/refresh_tokens": {
             "post": {
                 "operationId": "api_auth_refresh_tokens_post",
@@ -3733,6 +3817,50 @@
                     }
                 }
             },
+            "PasswordResetRequest-password-reset-request.write": {
+                "type": "object",
+                "description": "",
+                "deprecated": false,
+                "required": [
+                    "identifier",
+                    "newPassword",
+                    "confirmPassword"
+                ],
+                "properties": {
+                    "identifier": {
+                        "type": "string"
+                    },
+                    "newPassword": {
+                        "minLength": 8,
+                        "type": "string"
+                    },
+                    "confirmPassword": {
+                        "type": "string"
+                    }
+                }
+            },
+            "PasswordResetRequest.jsonld-password-reset-request.write": {
+                "type": "object",
+                "description": "",
+                "deprecated": false,
+                "required": [
+                    "identifier",
+                    "newPassword",
+                    "confirmPassword"
+                ],
+                "properties": {
+                    "identifier": {
+                        "type": "string"
+                    },
+                    "newPassword": {
+                        "minLength": 8,
+                        "type": "string"
+                    },
+                    "confirmPassword": {
+                        "type": "string"
+                    }
+                }
+            },
             "Resource-resource.read": {
                 "type": "object",
                 "description": "Represents a resource within the AstroBook platform.\n\nA resource refers to any reservable asset, such as \"Command Module #3\",\n\"Orbital Lab A\", or \"Hydroponic Chamber 7B\". Each resource is linked to a\nResourceType that defines its expected structure and behavior.",
@@ -4387,6 +4515,9 @@
         }
     ],
     "tags": [
+        {
+            "name": "Auth"
+        },
         {
             "name": "Event",
             "description": "Represents an event ressource withing AstroBook."
