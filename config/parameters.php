@@ -27,10 +27,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters->set('env(JWT_PUBLIC_KEY)', '%kernel.project_dir%/config/jwt/public.pem');
 
     $parameters->set('env(JWT_PASSPHRASE)', '2adb39303a2d4d4b912047562ffa151645fdd0c04da0f83c9742830aebc7214f');
+
     if ('prod' === $containerConfigurator->env()) {
-        $containerConfigurator->extension('parameters', [
-            '.container.dumper.inline_factories' => true,
-            '.container.dumper.inline_class_loader' => true,
-        ]);
+        $parameters->set('.container.dumper.inline_factories', true);
+        $parameters->set('.container.dumper.inline_class_loader', true);
     }
 };
