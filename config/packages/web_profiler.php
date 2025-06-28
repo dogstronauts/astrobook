@@ -15,9 +15,20 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     if ('dev' === $containerConfigurator->env()) {
         $containerConfigurator->extension('web_profiler', [
             'toolbar' => true,
+            'intercept_redirects' => false,
         ]);
         $containerConfigurator->extension('framework', [
             'profiler' => [
+                'only_exceptions' => false,
+                'collect_serializer_data' => true,
+            ],
+        ]);
+    }
+
+    if ('test' === $containerConfigurator->env()) {
+        $containerConfigurator->extension('framework', [
+            'profiler' => [
+                'collect' => false,
                 'collect_serializer_data' => true,
             ],
         ]);
