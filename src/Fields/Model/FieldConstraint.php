@@ -9,7 +9,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Dogstronauts\AstroBook\Resources\Model;
+namespace Dogstronauts\AstroBook\Fields\Model;
 
 use Symfony\Component\Serializer\Attribute as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -24,7 +24,7 @@ class FieldConstraint
 {
     #[Serializer\Groups(['resource-type:read', 'resource-type:write'])]
     #[Assert\NotBlank]
-    public string $class;
+    public string $constraint;
 
     /** @var array<string, string> */
     #[Serializer\Groups(['resource-type:read', 'resource-type:write'])]

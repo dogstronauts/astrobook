@@ -3427,11 +3427,11 @@
                 "type": "object",
                 "description": "",
                 "deprecated": false,
-                "required": [
-                    "type",
-                    "label"
-                ],
                 "properties": {
+                    "code": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
                     "type": {
                         "type": "string",
                         "enum": [
@@ -3448,13 +3448,23 @@
                     "label": {
                         "type": "string"
                     },
+                    "options": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
                     "constraints": {
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/FieldConstraint-resource-type.read"
                         }
                     }
-                }
+                },
+                "required": [
+                    "type",
+                    "label"
+                ]
             },
             "Field-resource-type.write": {
                 "type": "object",
@@ -3481,6 +3491,12 @@
                     "label": {
                         "type": "string"
                     },
+                    "options": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
                     "constraints": {
                         "type": "array",
                         "items": {
@@ -3493,10 +3509,6 @@
                 "type": "object",
                 "description": "",
                 "deprecated": false,
-                "required": [
-                    "type",
-                    "label"
-                ],
                 "properties": {
                     "@context": {
                         "readOnly": true,
@@ -3533,6 +3545,10 @@
                         "readOnly": true,
                         "type": "string"
                     },
+                    "code": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
                     "type": {
                         "type": "string",
                         "enum": [
@@ -3549,13 +3565,23 @@
                     "label": {
                         "type": "string"
                     },
+                    "options": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
                     "constraints": {
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/FieldConstraint.jsonld-resource-type.read"
                         }
                     }
-                }
+                },
+                "required": [
+                    "type",
+                    "label"
+                ]
             },
             "Field.jsonld-resource-type.write": {
                 "type": "object",
@@ -3582,6 +3608,12 @@
                     "label": {
                         "type": "string"
                     },
+                    "options": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
                     "constraints": {
                         "type": "array",
                         "items": {
@@ -3595,10 +3627,10 @@
                 "description": "",
                 "deprecated": false,
                 "required": [
-                    "class"
+                    "constraint"
                 ],
                 "properties": {
-                    "class": {
+                    "constraint": {
                         "type": "string"
                     },
                     "options": {
@@ -3614,10 +3646,10 @@
                 "description": "",
                 "deprecated": false,
                 "required": [
-                    "class"
+                    "constraint"
                 ],
                 "properties": {
-                    "class": {
+                    "constraint": {
                         "type": "string"
                     },
                     "options": {
@@ -3633,7 +3665,7 @@
                 "description": "",
                 "deprecated": false,
                 "required": [
-                    "class"
+                    "constraint"
                 ],
                 "properties": {
                     "@context": {
@@ -3671,7 +3703,7 @@
                         "readOnly": true,
                         "type": "string"
                     },
-                    "class": {
+                    "constraint": {
                         "type": "string"
                     },
                     "options": {
@@ -3687,10 +3719,10 @@
                 "description": "",
                 "deprecated": false,
                 "required": [
-                    "class"
+                    "constraint"
                 ],
                 "properties": {
-                    "class": {
+                    "constraint": {
                         "type": "string"
                     },
                     "options": {
@@ -3897,7 +3929,6 @@
                         ]
                     },
                     "fields": {
-                        "minItems": 1,
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/Field-resource-type.read"
@@ -3905,8 +3936,7 @@
                     }
                 },
                 "required": [
-                    "label",
-                    "fields"
+                    "label"
                 ]
             },
             "ResourceType-resource-type.write": {
@@ -3914,8 +3944,7 @@
                 "description": "Represents a resource type within the application.\n\nThis class defines the structure and attributes that a resource of this type must have.\nIt allows for dynamic configuration of resource properties based on their type.",
                 "deprecated": false,
                 "required": [
-                    "label",
-                    "fields"
+                    "label"
                 ],
                 "properties": {
                     "label": {
@@ -3929,7 +3958,6 @@
                         ]
                     },
                     "fields": {
-                        "minItems": 1,
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/Field-resource-type.write"
@@ -3993,7 +4021,6 @@
                         ]
                     },
                     "fields": {
-                        "minItems": 1,
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/Field.jsonld-resource-type.read"
@@ -4001,8 +4028,7 @@
                     }
                 },
                 "required": [
-                    "label",
-                    "fields"
+                    "label"
                 ]
             },
             "ResourceType.jsonld-resource-type.write": {
@@ -4010,8 +4036,7 @@
                 "description": "Represents a resource type within the application.\n\nThis class defines the structure and attributes that a resource of this type must have.\nIt allows for dynamic configuration of resource properties based on their type.",
                 "deprecated": false,
                 "required": [
-                    "label",
-                    "fields"
+                    "label"
                 ],
                 "properties": {
                     "label": {
@@ -4025,7 +4050,6 @@
                         ]
                     },
                     "fields": {
-                        "minItems": 1,
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/Field.jsonld-resource-type.write"

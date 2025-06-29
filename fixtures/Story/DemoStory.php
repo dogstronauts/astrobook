@@ -12,7 +12,10 @@ declare(strict_types=1);
 namespace Dogstronauts\AstroBook\Fixtures\Story;
 
 use Dogstronauts\AstroBook\Events\Model\EventStatus;
+use Dogstronauts\AstroBook\Fields\Model\FieldType;
 use Dogstronauts\AstroBook\Fixtures\Factory\EventFactory;
+use Dogstronauts\AstroBook\Fixtures\Factory\FieldFactory;
+use Dogstronauts\AstroBook\Fixtures\Factory\ResourceTypeFactory;
 use Dogstronauts\AstroBook\Fixtures\Factory\TaxonomyFactory;
 use Dogstronauts\AstroBook\Fixtures\Factory\UserFactory;
 use Dogstronauts\AstroBook\Shared\Taxonomies\Model\Taxonomy;
@@ -26,8 +29,11 @@ final class DemoStory extends Story
 {
     public function build(): void
     {
-        // create a user
-        UserFactory::createOne(['identifier' => 'demo@demo.fr', 'plainPassword' => 'demo1234%']);
+        // create users
+        UserFactory::createSequence([
+            ['identifier' => 'demo@demo.fr', 'plainPassword' => 'demo1234%'],
+            ['identifier' => 'administrator', 'plainPassword' => 'administrator', 'roles' => ['ROLE_PLATFORM']],
+        ]);
 
         // create few events
         EventFactory::new()->sequence([
@@ -103,6 +109,124 @@ final class DemoStory extends Story
             'Mars Fetch Mission' => 'Long-term expedition to explore the red planet and retrieve Martian samples.',
             'Asteroid Belt Patrol' => 'Security mission to monitor and protect the outer reaches of our solar system.',
         ]);
+
+        // Create resource types with predefined fields
+        ResourceTypeFactory::new()->sequence([
+            [
+                'label' => 'Mission Report',
+                'description' => 'Detailed report format for post-mission analysis',
+                'fields' => FieldFactory::new()->sequence([
+                    [
+                        'type' => FieldType::STRING,
+                        'label' => 'Commander Name',
+                        'options' => [
+                            'placeholder' => 'e.g. Rex Thunderpaw',
+                            'help' => 'Name of the commanding dogstronaut for this mission',
+                        ],
+                    ],
+                    [
+                        'type' => FieldType::DATETIME,
+                        'label' => 'Mission Start',
+                        'options' => [
+                            'placeholder' => 'Select launch datetime',
+                            'help' => 'Precise datetime of mission liftoff',
+                        ],
+                    ],
+                    [
+                        'type' => FieldType::BOOL,
+                        'label' => 'Mission Success',
+                        'options' => [
+                            'placeholder' => 'Select yes or no',
+                            'help' => 'Was the mission completed successfully?',
+                        ],
+                    ],
+                    [
+                        'type' => FieldType::ARRAY,
+                        'label' => 'Available Modules',
+                        'options' => [
+                            'availableValues' => [
+                                'Navigation',
+                                'Thermal Control',
+                                'Life Support',
+                                'Communication',
+                                'Bone Analyzer',
+                            ],
+                            'placeholder' => 'Select modules involved',
+                            'help' => 'List of modules used or available during the mission',
+                        ],
+                    ],
+                ]),
+            ],
+            [
+                'label' => 'Dogstronaut BioSheet',
+                'description' => 'Official biodata sheet used for interstellar missions and kennel archival.',
+                'fields' => FieldFactory::new()->sequence([
+                    [
+                        'type' => FieldType::STRING,
+                        'label' => 'Callsign',
+                        'options' => [
+                            'placeholder' => 'e.g. Luna Barkstar',
+                            'help' => 'Operational callsign of the dogstronaut',
+                        ],
+                    ],
+                    [
+                        'type' => FieldType::INT,
+                        'label' => 'Bone Age (in Earth years)',
+                        'options' => [
+                            'placeholder' => 'e.g. 7',
+                            'help' => 'Dogstronaut age at mission time',
+                        ],
+                    ],
+                    [
+                        'type' => FieldType::STRING,
+                        'label' => 'Breed Classification',
+                        'options' => [
+                            'placeholder' => 'e.g. Shepherd Alpha-Class',
+                            'help' => 'Genetic classification of the dogstronaut',
+                        ],
+                    ],
+                    [
+                        'type' => FieldType::DATE,
+                        'label' => 'First Lift-off Date',
+                        'options' => [
+                            'placeholder' => 'Select first launch date',
+                            'help' => 'Date of the first space mission of the dogstronaut',
+                        ],
+                    ],
+                ]),
+            ],
+            [
+                'label' => 'Telemetry Packet',
+                'description' => 'Real-time data packets captured during a mission',
+                'fields' => FieldFactory::new()->sequence([
+                    [
+                        'type' => FieldType::FLOAT,
+                        'label' => 'Temperature',
+                        'options' => [
+                            'placeholder' => 'e.g. 23.5',
+                            'help' => 'Temperature measured in Celsius during mission',
+                        ],
+                    ],
+                    [
+                        'type' => FieldType::ARRAY,
+                        'label' => 'Sensor Values',
+                        'options' => [
+                            'availableValues' => ['O2', 'CO2', 'Pulse', 'Motion'],
+                            'placeholder' => 'Select sensor outputs',
+                            'help' => 'Sensor types recorded during mission activity',
+                        ],
+                    ],
+                    [
+                        'type' => FieldType::JSON,
+                        'label' => 'Custom Metadata',
+                        'options' => [
+                            'placeholder' => '{"extra":"data"}',
+                            'help' => 'Any additional structured metadata (JSON format)',
+                        ],
+                    ],
+                ]),
+            ],
+        ])->create();
     }
 
     /**

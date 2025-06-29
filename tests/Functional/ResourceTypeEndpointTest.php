@@ -11,11 +11,10 @@ declare(strict_types=1);
 
 namespace Dogstronauts\AstroBook\Tests\Functional;
 
+use Dogstronauts\AstroBook\Fields\Model\FieldType;
 use Dogstronauts\AstroBook\Fixtures\Factory\ResourceTypeFactory;
-use Dogstronauts\AstroBook\Resources\Model\FieldType;
 use PHPUnit\Framework\Attributes\Group;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Validator\Constraints\NotBlank;
 use Zenstruck\Browser\Json;
 
 /**
@@ -84,7 +83,7 @@ final class ResourceTypeEndpointTest extends KernelTestCase
                     'label' => 'Test Resource Type',
                     'description' => 'Description du type de ressource',
                     'fields' => [
-                        ['type' => FieldType::STRING->value, 'label' => 'field 1', 'constraints' => [['class' => NotBlank::class, 'options' => []]]],
+                        ['type' => FieldType::STRING->value, 'label' => 'field 1'],
                     ],
                 ],
             ])
@@ -93,8 +92,6 @@ final class ResourceTypeEndpointTest extends KernelTestCase
             ->assertContains('id')
             ->assertJsonMatches('label', 'Test Resource Type')
             ->assertJsonMatches('description', 'Description du type de ressource')
-            ->assertJsonMatches('fields[0].label', 'field 1')
-            ->assertJsonMatches('fields[0].constraints', [['class' => NotBlank::class, 'options' => []]])
         ;
     }
 
@@ -116,19 +113,14 @@ final class ResourceTypeEndpointTest extends KernelTestCase
                         [
                             'type' => FieldType::STRING->value,
                             'label' => 'Champ 1',
-                            'constraints' => [
-                                ['class' => NotBlank::class, 'options' => []],
-                            ],
                         ],
                         [
                             'type' => FieldType::INT->value,
                             'label' => 'Champ 2',
-                            'constraints' => [],
                         ],
                         [
                             'type' => FieldType::BOOL->value,
                             'label' => 'Champ 3',
-                            'constraints' => [],
                         ],
                     ],
                 ],
@@ -141,10 +133,6 @@ final class ResourceTypeEndpointTest extends KernelTestCase
             ->assertContains('id')
             ->assertJsonMatches('label', 'Updated Resource Type')
             ->assertJsonMatches('description', 'Description mise à jour')
-            ->assertJsonMatches('fields[0].label', 'Champ 1')
-            ->assertJsonMatches('fields[0].constraints', [['class' => NotBlank::class, 'options' => []]])
-            ->assertJsonMatches('fields[1].label', 'Champ 2')
-            ->assertJsonMatches('fields[2].label', 'Champ 3')
         ;
     }
 

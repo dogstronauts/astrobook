@@ -14,6 +14,7 @@ namespace Dogstronauts\AstroBook\Resources\Model;
 use ApiPlatform\Metadata as ApiMetadata;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Dogstronauts\AstroBook\Fields\Model\Field;
 use Dogstronauts\AstroBook\Shared\Taxonomies\Model\SoftDeletableInterface;
 use Dogstronauts\AstroBook\Shared\Taxonomies\Model\SoftDeletableTrait;
 use Symfony\Bridge\Doctrine\IdGenerator\UlidGenerator;
@@ -58,10 +59,6 @@ class ResourceType implements SoftDeletableInterface
     /** @var list<Field> */
     #[ORM\Column(type: Types::JSON)]
     #[Serializer\Groups(['resource-type:read', 'resource-type:write'])]
-    #[Assert\Sequentially([
-        new Assert\NotBlank(),
-        new Assert\Count(min: 1),
-    ])]
     #[Assert\Valid]
     public array $fields = [];
 }
