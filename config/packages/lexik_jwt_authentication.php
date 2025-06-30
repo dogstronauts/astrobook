@@ -19,7 +19,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         'token_ttl' => 3600,
         'user_id_claim' => 'identifier',
         'api_platform' => [
-            'check_path' => '/authenticate',
+            'check_path' => '/auth/login',
             'username_path' => 'identifier',
             'password_path' => 'password',
         ],

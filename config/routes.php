@@ -12,13 +12,13 @@ declare(strict_types=1);
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 return static function (RoutingConfigurator $routingConfigurator): void {
-    $routingConfigurator->add('authenticate', '/authenticate')
+    $routingConfigurator->add('auth_login', '/auth/login')
         ->methods([
             'POST',
         ])
     ;
 
-    $routingConfigurator->add('refresh_tokens', '/refresh_tokens')
+    $routingConfigurator->add('auth_refresh_tokens', '/auth/refresh_tokens')
         ->methods([
             'POST',
         ])

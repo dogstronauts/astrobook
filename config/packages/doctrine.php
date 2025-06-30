@@ -30,19 +30,26 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ],
             'auto_mapping' => true,
             'mappings' => [
-                'Shared' => [
+                'Auth' => [
                     'type' => 'attribute',
                     'is_bundle' => false,
-                    'dir' => '%kernel.project_dir%/src/Shared/Model',
-                    'prefix' => 'Dogstronauts\AstroBook\Shared\Model',
-                    'alias' => 'Shared',
+                    'dir' => '%kernel.project_dir%/src/Auth/Model',
+                    'prefix' => 'Dogstronauts\AstroBook\Auth\Model',
+                    'alias' => 'Auth',
                 ],
-                'Security' => [
+                'Taxonomies' => [
                     'type' => 'attribute',
                     'is_bundle' => false,
-                    'dir' => '%kernel.project_dir%/src/Security/Model',
-                    'prefix' => 'Dogstronauts\AstroBook\Security\Model',
-                    'alias' => 'Security',
+                    'dir' => '%kernel.project_dir%/src/Shared/Taxonomies/Model',
+                    'prefix' => 'Dogstronauts\AstroBook\Shared\Taxonomies\Model',
+                    'alias' => 'Taxonomies',
+                ],
+                'Users' => [
+                    'type' => 'attribute',
+                    'is_bundle' => false,
+                    'dir' => '%kernel.project_dir%/src/Shared/Users/Model',
+                    'prefix' => 'Dogstronauts\AstroBook\Shared\Users\Model',
+                    'alias' => 'Users',
                 ],
                 'Resources' => [
                     'type' => 'attribute',

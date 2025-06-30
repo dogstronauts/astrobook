@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('gesdinet_jwt_refresh_token', [
-        'refresh_token_class' => Dogstronauts\AstroBook\Security\Model\RefreshToken::class,
+        'refresh_token_class' => Dogstronauts\AstroBook\Auth\Model\RefreshToken::class,
         'single_use' => true,
     ]);
 };
