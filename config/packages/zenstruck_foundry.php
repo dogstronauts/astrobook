@@ -12,21 +12,7 @@ declare(strict_types=1);
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
-    if ('dev' === $containerConfigurator->env()) {
-        $containerConfigurator->extension('zenstruck_foundry', [
-            'persistence' => [
-                'flush_once' => true,
-            ],
-            'make_factory' => [
-                'default_namespace' => 'Dogstronauts\AstroBook\Fixtures\Factory',
-            ],
-            'make_story' => [
-                'default_namespace' => 'Dogstronauts\AstroBook\Fixtures\Story',
-            ],
-        ]);
-    }
-
-    if ('test' === $containerConfigurator->env()) {
+    if (\in_array($containerConfigurator->env(), ['dev', 'test'], true)) {
         $containerConfigurator->extension('zenstruck_foundry', [
             'persistence' => [
                 'flush_once' => true,
