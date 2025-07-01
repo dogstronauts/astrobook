@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 namespace Dogstronauts\AstroBook\Fixtures\Factory;
 
-use Dogstronauts\AstroBook\Resources\Model\Field;
-use Dogstronauts\AstroBook\Resources\Model\FieldType;
+use Dogstronauts\AstroBook\Fields\Model\Field;
+use Dogstronauts\AstroBook\Fields\Model\FieldType;
 use Zenstruck\Foundry\ObjectFactory;
 
 /**
@@ -30,7 +30,6 @@ final class FieldFactory extends ObjectFactory
         return [
             'type' => self::faker()->randomElement(FieldType::cases()),
             'label' => self::faker()->text(),
-            'constraints' => FieldConstraintFactory::new()->many(1),
         ];
     }
 }

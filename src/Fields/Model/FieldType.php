@@ -9,7 +9,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Dogstronauts\AstroBook\Resources\Model;
+namespace Dogstronauts\AstroBook\Fields\Model;
 
 /**
  * Defines the available data types for fields in resources.

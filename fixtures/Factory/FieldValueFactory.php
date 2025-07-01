@@ -11,24 +11,24 @@ declare(strict_types=1);
 
 namespace Dogstronauts\AstroBook\Fixtures\Factory;
 
-use Dogstronauts\AstroBook\Fields\Model\FieldConstraint;
+use Dogstronauts\AstroBook\Fields\Model\FieldValue;
 use Zenstruck\Foundry\ObjectFactory;
 
 /**
- * @extends ObjectFactory<FieldConstraint>
+ * @extends ObjectFactory<FieldValue>
  */
-final class FieldConstraintFactory extends ObjectFactory
+final class FieldValueFactory extends ObjectFactory
 {
     public static function class(): string
     {
-        return FieldConstraint::class;
+        return FieldValue::class;
     }
 
     protected function defaults(): array
     {
         return [
-            'class' => self::faker()->text(),
-            'options' => [],
+            'name' => self::faker()->text,
+            'value' => self::faker()->text,
         ];
     }
 }

@@ -9,24 +9,29 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Dogstronauts\AstroBook\Resources\Model;
+namespace Dogstronauts\AstroBook\Fields\Model;
 
+use Dogstronauts\AstroBook\Fields\Validator\Constraints as ResourcesAssert;
 use Symfony\Component\Serializer\Attribute as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use function Symfony\Component\String\u;
+
 /**
  * Defines a custom field for resources in the AstroBook platform.
- *
- * Fields are the building blocks used to capture and display information in the system.
- * Each field has a specific data type (like text, number, date), a display name,
- * and optional validation rules to ensure data quality.
  *
  * @see ResourceType
  * @see FieldType
  * @see FieldConstraint
  */
+#[ResourcesAssert\FieldOptions]
 class Field
 {
+    #[Serializer\Groups(['resource-type:read'])]
+    public string $code {
+        get => u($this->label)->ascii()->replaceMatches('/[^a-z0-9]+/i', '_')->trim('_')->lower()->toString();
+    }
+
     #[Serializer\Groups(['resource-type:read', 'resource-type:write'])]
     #[Assert\NotBlank]
     public FieldType $type;
@@ -35,8 +40,11 @@ class Field
     #[Assert\NotBlank]
     public string $label;
 
+    /** @var array<string, string> */
+    #[Serializer\Groups(['resource-type:read', 'resource-type:write'])]
+    public array $options = [];
+
     /** @var list<FieldConstraint> */
     #[Serializer\Groups(['resource-type:read', 'resource-type:write'])]
-    #[Assert\Valid]
     public array $constraints = [];
 }
