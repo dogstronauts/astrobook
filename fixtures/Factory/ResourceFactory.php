@@ -15,7 +15,7 @@ use Dogstronauts\AstroBook\Resources\Model\Resource;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @extends PersistentProxyObjectFactory<Resource>
+ * @extends PersistentProxyObjectFactory<resource>
  */
 final class ResourceFactory extends PersistentProxyObjectFactory
 {

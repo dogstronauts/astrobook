@@ -12,7 +12,6 @@ declare(strict_types=1);
 namespace Dogstronauts\AstroBook;
 
 use Dogstronauts\AstroBook\Security\DependencyInjection\Compiler\GesdinetPass;
-use Dogstronauts\AstroBook\Security\DependencyInjection\Compiler\LexikPass;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
@@ -23,7 +22,6 @@ class Kernel extends BaseKernel
 
     protected function build(ContainerBuilder $container): void
     {
-        $container->addCompilerPass(new LexikPass());
         $container->addCompilerPass(new GesdinetPass());
     }
 }
