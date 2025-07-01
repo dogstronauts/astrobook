@@ -20,7 +20,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         'providers' => [
             'user_provider' => [
                 'entity' => [
-                    'class' => Dogstronauts\AstroBook\Security\Model\User::class,
+                    'class' => Dogstronauts\AstroBook\Shared\Users\Model\User::class,
                     'property' => 'identifier',
                 ],
             ],
@@ -35,7 +35,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 'provider' => 'user_provider',
                 'entry_point' => 'jwt',
                 'json_login' => [
-                    'check_path' => 'authenticate',
+                    'check_path' => 'auth_login',
                     'username_path' => 'identifier',
                     'password_path' => 'password',
                     'success_handler' => 'lexik_jwt_authentication.handler.authentication_success',
@@ -43,7 +43,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 ],
                 'jwt' => null,
                 'refresh_jwt' => [
-                    'check_path' => 'refresh_tokens',
+                    'check_path' => 'auth_refresh_tokens',
                 ],
             ],
         ],
@@ -53,7 +53,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 'roles' => 'PUBLIC_ACCESS',
             ],
             [
-                'path' => '^/(me|authenticate|refresh_tokens)',
+                'path' => '^/(me|auth/{login|refresh_tokens})',
                 'roles' => 'PUBLIC_ACCESS',
                 'method' => 'POST',
             ],

@@ -13,7 +13,7 @@ namespace Dogstronauts\AstroBook\Tests\Functional;
 
 use ApiPlatform\Metadata\IriConverterInterface;
 use Dogstronauts\AstroBook\Fixtures\Factory\UserFactory;
-use Dogstronauts\AstroBook\Security\Model\User;
+use Dogstronauts\AstroBook\Shared\Users\Model\User;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase as baseKernelTestCase;
 use Zenstruck\Browser\Test\HasBrowser;
 use Zenstruck\Foundry\Test\Factories;

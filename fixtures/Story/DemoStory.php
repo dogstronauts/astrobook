@@ -15,7 +15,7 @@ use Dogstronauts\AstroBook\Events\Model\EventStatus;
 use Dogstronauts\AstroBook\Fixtures\Factory\EventFactory;
 use Dogstronauts\AstroBook\Fixtures\Factory\TaxonomyFactory;
 use Dogstronauts\AstroBook\Fixtures\Factory\UserFactory;
-use Dogstronauts\AstroBook\Shared\Model\Taxonomy;
+use Dogstronauts\AstroBook\Shared\Taxonomies\Model\Taxonomy;
 use Zenstruck\Foundry\Attribute\AsFixture;
 use Zenstruck\Foundry\Story;
 

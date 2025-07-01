@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Dogstronauts\AstroBook;
 
-use Dogstronauts\AstroBook\Security\DependencyInjection\Compiler\GesdinetPass;
+use Dogstronauts\AstroBook\Auth\DependencyInjection\Compiler\GesdinetPass;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
