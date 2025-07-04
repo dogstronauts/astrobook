@@ -56,7 +56,8 @@
         "symfony/serializer": "7.3.*",
         "symfony/twig-bundle": "7.3.*",
         "symfony/validator": "7.3.*",
-        "symfony/yaml": "7.3.*"
+        "symfony/yaml": "7.3.*",
+        "symfony/translation": "7.3.*"
     },
     "replace": {
         "symfony/polyfill-ctype": "*",
