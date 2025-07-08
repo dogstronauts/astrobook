@@ -47,5 +47,6 @@ return $config
         '@PHP82Migration' => true,
     ])
     ->setRiskyAllowed(true)
+    ->setUnsupportedPhpVersionAllowed(true)
     ->setFinder($finder)
     ->setCacheFile('.php-cs-fixer.cache');
