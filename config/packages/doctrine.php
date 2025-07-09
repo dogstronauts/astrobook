@@ -44,6 +44,13 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                     'prefix' => 'Dogstronauts\AstroBook\Shared\Taxonomies\Model',
                     'alias' => 'Taxonomies',
                 ],
+                'Contacts' => [
+                    'type' => 'attribute',
+                    'is_bundle' => false,
+                    'dir' => '%kernel.project_dir%/src/Shared/Contacts/Model',
+                    'prefix' => 'Dogstronauts\AstroBook\Shared\Contacts\Model',
+                    'alias' => 'Contacts',
+                ],
                 'Users' => [
                     'type' => 'attribute',
                     'is_bundle' => false,
