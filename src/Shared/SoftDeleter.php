@@ -15,7 +15,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
-use Dogstronauts\AstroBook\Shared\Taxonomies\Model\SoftDeletableInterface;
 
 final class SoftDeleter
 {

@@ -16,7 +16,7 @@ use ApiPlatform\Doctrine\Orm\Extension\QueryItemExtensionInterface;
 use ApiPlatform\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use ApiPlatform\Metadata\Operation;
 use Doctrine\ORM\QueryBuilder;
-use Dogstronauts\AstroBook\Shared\Taxonomies\Model\SoftDeletableInterface;
+use Dogstronauts\AstroBook\Shared\SoftDeletableInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 
 final readonly class SoftDeleteExtension implements QueryCollectionExtensionInterface, QueryItemExtensionInterface

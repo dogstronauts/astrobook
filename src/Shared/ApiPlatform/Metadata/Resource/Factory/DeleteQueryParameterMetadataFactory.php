@@ -18,7 +18,7 @@ use ApiPlatform\Metadata\Operations;
 use ApiPlatform\Metadata\QueryParameter;
 use ApiPlatform\Metadata\Resource\Factory\ResourceMetadataCollectionFactoryInterface;
 use ApiPlatform\Metadata\Resource\ResourceMetadataCollection;
-use Dogstronauts\AstroBook\Shared\Taxonomies\Model\SoftDeletableInterface;
+use Dogstronauts\AstroBook\Shared\SoftDeletableInterface;
 use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
 
 #[AsDecorator('api_platform.metadata.resource.metadata_collection_factory.parameter')]
