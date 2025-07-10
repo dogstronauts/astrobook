@@ -13,11 +13,15 @@ namespace Dogstronauts\AstroBook\Fixtures\Story;
 
 use Dogstronauts\AstroBook\Events\Model\EventStatus;
 use Dogstronauts\AstroBook\Fields\Model\FieldType;
+use Dogstronauts\AstroBook\Fixtures\Factory\AddressFactory;
+use Dogstronauts\AstroBook\Fixtures\Factory\ContactFactory;
 use Dogstronauts\AstroBook\Fixtures\Factory\EventFactory;
 use Dogstronauts\AstroBook\Fixtures\Factory\FieldFactory;
 use Dogstronauts\AstroBook\Fixtures\Factory\ResourceTypeFactory;
 use Dogstronauts\AstroBook\Fixtures\Factory\TaxonomyFactory;
+use Dogstronauts\AstroBook\Fixtures\Factory\UserContactFactory;
 use Dogstronauts\AstroBook\Fixtures\Factory\UserFactory;
+use Dogstronauts\AstroBook\Shared\Contacts\Model\ContactType;
 use Dogstronauts\AstroBook\Shared\Taxonomies\Model\Taxonomy;
 use Zenstruck\Foundry\Attribute\AsFixture;
 use Zenstruck\Foundry\Story;
@@ -33,6 +37,42 @@ final class DemoStory extends Story
         UserFactory::createSequence([
             ['identifier' => 'demo@demo.fr', 'plainPassword' => 'demo1234%'],
             ['identifier' => 'administrator', 'plainPassword' => 'administrator', 'roles' => ['ROLE_PLATFORM']],
+        ]);
+
+        // create contact for the user with identifier demo@demo.fr
+        UserContactFactory::createOne([
+            'type' => ContactType::DEFAULT,
+            'user' => UserFactory::find(['identifier' => 'demo@demo.fr']),
+            'contact' => ContactFactory::createOne([
+                'firstname' => 'Demo',
+                'lastname' => 'User',
+                'email' => 'demo@demo.fr',
+                'phone' => '+33123456789',
+                'address' => AddressFactory::createOne([
+                    'street' => '123 Demo Street',
+                    'city' => 'Demo City',
+                    'postalCode' => '12345',
+                    'country' => 'Demo Country',
+                ]),
+            ]),
+        ]);
+
+        // create contact for the user with an identifier administrator
+        UserContactFactory::createOne([
+            'type' => ContactType::DEFAULT,
+            'user' => UserFactory::find(['identifier' => 'administrator']),
+            'contact' => ContactFactory::new([
+                'firstname' => 'Admin',
+                'lastname' => 'User',
+                'email' => 'admin@astrobook.com',
+                'phone' => '+33987654321',
+                'address' => AddressFactory::new([
+                    'street' => '456 Admin Street',
+                    'city' => 'Admin City',
+                    'postalCode' => '54321',
+                    'country' => 'Admin Country',
+                ]),
+            ]),
         ]);
 
         // create few events
