@@ -14,8 +14,8 @@ namespace Dogstronauts\AstroBook\Shared\ApiPlatform\Doctrine\Common\State;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Dogstronauts\AstroBook\Shared\SoftDeletableInterface;
 use Dogstronauts\AstroBook\Shared\SoftDeleter;
-use Dogstronauts\AstroBook\Shared\Taxonomies\Model\SoftDeletableInterface;
 use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
 
 #[AsDecorator('api_platform.doctrine.orm.state.remove_processor')]

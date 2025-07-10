@@ -9,7 +9,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Dogstronauts\AstroBook\Shared\Taxonomies\Model;
+namespace Dogstronauts\AstroBook\Shared;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;

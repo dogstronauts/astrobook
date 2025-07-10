@@ -14,6 +14,8 @@ namespace Dogstronauts\AstroBook\Shared\Taxonomies\Model;
 use ApiPlatform\Metadata as ApiMetadata;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Dogstronauts\AstroBook\Shared\SoftDeletableInterface;
+use Dogstronauts\AstroBook\Shared\SoftDeletableTrait;
 use Symfony\Bridge\Doctrine\IdGenerator\UlidGenerator;
 use Symfony\Bridge\Doctrine\Types\UlidType;
 use Symfony\Bridge\Doctrine\Validator\Constraints as DoctrineAssert;
