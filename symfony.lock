@@ -357,7 +357,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "2.6",
-            "ref": "3c7f73fdbf04b3a00e0664b0b9cc6fdebbb50a8a"
+            "ref": "50321333fa5e12324ac1d5a2aeb65fb276a6f9c8"
         },
         "files": [
             "config/packages/zenstruck_foundry.yaml",
