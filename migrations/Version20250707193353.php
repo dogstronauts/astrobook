@@ -14,7 +14,7 @@ namespace Dogstronauts\AstroBook\DoctrineMigrations;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-final class Version20250711231142 extends AbstractMigration
+final class Version20250707193353 extends AbstractMigration
 {
     public function up(Schema $schema): void
     {
