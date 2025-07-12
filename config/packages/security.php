@@ -49,11 +49,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ],
         'access_control' => [
             [
-                'path' => '^/(docs|$)',
+                'path' => '^/(docs|_webhook|$)',
                 'roles' => 'PUBLIC_ACCESS',
             ],
             [
-                'path' => '^/(me|auth/{login|refresh_tokens})',
+                'path' => '^/auth/(login|refresh_tokens|password_reset_requests)$',
                 'roles' => 'PUBLIC_ACCESS',
                 'method' => 'POST',
             ],

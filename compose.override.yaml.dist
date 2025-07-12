@@ -3,5 +3,21 @@ x-app-nginx-attributes: &app-nginx-attributes
   ports:
     - "8080:80"
 
+x-app-mailer-attributes: &app-mailer-attributes
+  image: axllent/mailpit
+  ports:
+    - "1025:1025"
+    - "8025:8025"
+  environment:
+    MP_SMTP_AUTH_ACCEPT_ANY: 1
+    MP_SMTP_AUTH_ALLOW_INSECURE: 1
+
+x-app-database-attributes: &app-database-attributes
+  image: postgres:${POSTGRES_VERSION:-17}-alpine
+  ports:
+    - "5432:5432"
+
 services:
   app-nginx: *app-nginx-attributes
+  app-mailer: *app-mailer-attributes
+  app-database: *app-database-attributes
