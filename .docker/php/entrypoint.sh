@@ -9,7 +9,7 @@ fi
 
 if [ "$1" = 'php-fpm' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/console' ]; then
     composer install --prefer-dist --no-interaction
-    bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration --all-or-nothing
+    bin/console doctrine:migrations:migrate --no-interaction
     bin/console lexik:jwt:generate-keypair --skip-if-exists
 fi
 
