@@ -14,6 +14,9 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 return static function (ContainerConfigurator $containerConfigurator): void {
     if (\in_array($containerConfigurator->env(), ['dev', 'test'], true)) {
         $containerConfigurator->extension('zenstruck_foundry', [
+            'orm' => [
+                'reset' => ['mode' => 'migrate'],
+            ],
             'persistence' => [
                 'flush_once' => true,
             ],
