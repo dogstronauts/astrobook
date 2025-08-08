@@ -1,0 +1,59 @@
+name: OpenAPI Consistency
+
+on:
+  push:
+    branches: [ '1.0' ]
+  pull_request:
+    branches: [ '1.0' ]
+
+jobs:
+  check-openapi:
+    name: Ensure openapi.json is up-to-date
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+          tools: composer:v2
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.composer/cache/files
+            vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress --prefer-dist
+
+      - name: Export OpenAPI to temp file
+        env:
+          APP_ENV: test
+          APP_DEBUG: '0'
+          DATABASE_URL: 'sqlite:///%kernel.project_dir%/var/data.db'
+        run: |
+          php -v
+          php bin/console api:openapi:export > /tmp/openapi.generated.json
+
+      - name: Compare exported OpenAPI with committed file
+        run: |
+          set -e
+          if ! diff -u openapi.json /tmp/openapi.generated.json; then
+            echo "\nThe openapi.json file is not up to date."
+            echo "Please regenerate the file locally and commit it:"
+            echo "  composer run run:export-openapi-doc"
+            exit 1
+          fi
+

@@ -3832,6 +3832,7 @@
                     },
                     "newPassword": {
                         "minLength": 8,
+                        "maxLength": 128,
                         "type": "string"
                     },
                     "confirmPassword": {
@@ -3854,6 +3855,7 @@
                     },
                     "newPassword": {
                         "minLength": 8,
+                        "maxLength": 128,
                         "type": "string"
                     },
                     "confirmPassword": {
