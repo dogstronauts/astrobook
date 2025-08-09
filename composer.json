@@ -1,7 +1,7 @@
 {
     "name": "dogstronauts/astrobook",
     "type": "project",
-    "description": "Forged in the legacy of Sirius, AstroBook guides the Dogstronauts in planning missions and reserving celestial resources — a powerful system that centralizes event coordination and resource management across the galaxy.",
+    "description": "Forged in the legacy of Sirius, AstroBook guides the Dogstronauts in orchestrating their missions and managing galactic resources - A powerful system that centralizes event coordination and resource management across the galaxy",
     "keywords": [
         "api",
         "events",
