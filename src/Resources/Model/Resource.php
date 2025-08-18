@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace Dogstronauts\AstroBook\Resources\Model;
 
+use ApiPlatform\Doctrine\Common\Filter\SearchFilterInterface;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Metadata as ApiMetadata;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -33,6 +35,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     denormalizationContext: ['groups' => ['resource:write']],
     security: 'is_granted("ROLE_PLATFORM")'
 )]
+#[ApiMetadata\ApiFilter(SearchFilter::class, properties: ['type' => SearchFilterInterface::STRATEGY_EXACT])]
 class Resource
 {
     /**
