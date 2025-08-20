@@ -30,6 +30,9 @@
         <testsuite name="Unit">
             <directory>tests/Unit</directory>
         </testsuite>
+        <testsuite name="Users">
+            <directory>tests/Users</directory>
+        </testsuite>
     </testsuites>
 
     <extensions>
