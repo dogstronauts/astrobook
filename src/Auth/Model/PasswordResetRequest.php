@@ -18,7 +18,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Dogstronauts\AstroBook\Auth\ApiPlatform\State\PasswordResetRequestProcessor;
 use Dogstronauts\AstroBook\Auth\Repository\PasswordResetRequestRepository;
-use Dogstronauts\AstroBook\Shared\Users\Model\User;
+use Dogstronauts\AstroBook\Users\Model\User;
 use Symfony\Bridge\Doctrine\IdGenerator\UlidGenerator;
 use Symfony\Bridge\Doctrine\Types\UlidType;
 use Symfony\Component\HttpFoundation\Response;

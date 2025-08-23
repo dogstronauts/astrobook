@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Dogstronauts\AstroBook\Fixtures\Factory;
 
-use Dogstronauts\AstroBook\Shared\Contacts\Model\Address;
+use Dogstronauts\AstroBook\Users\Model\Address;
 use Zenstruck\Foundry\ObjectFactory;
 
 /**

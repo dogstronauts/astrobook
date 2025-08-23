@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Dogstronauts\AstroBook\Fixtures\Factory;
 
-use Dogstronauts\AstroBook\Shared\Taxonomies\Model\Taxonomy;
+use Dogstronauts\AstroBook\Taxonomies\Model\Taxonomy;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**

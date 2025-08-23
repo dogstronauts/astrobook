@@ -65,8 +65,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ],
         'mapping' => [
             'paths' => [
-                '%kernel.project_dir%/src/Shared/Taxonomies/Model',
-                '%kernel.project_dir%/src/Shared/Users/Model',
+                '%kernel.project_dir%/src/Taxonomies/Model',
+                '%kernel.project_dir%/src/Users/Model',
                 '%kernel.project_dir%/src/Auth/Model',
                 '%kernel.project_dir%/src/Events/Model',
                 '%kernel.project_dir%/src/Resources/Model',

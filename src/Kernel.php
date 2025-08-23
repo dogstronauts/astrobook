@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Dogstronauts\AstroBook;
 
 use Dogstronauts\AstroBook\Auth\DependencyInjection\Compiler\GesdinetPass;
-use Dogstronauts\AstroBook\Fields\DependencyInjection\RegisterFieldOptionsConfiguratorsPass;
+use Dogstronauts\AstroBook\Resources\Fields\DependencyInjection\RegisterFieldOptionsConfiguratorsPass;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;

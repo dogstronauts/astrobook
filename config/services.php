@@ -23,13 +23,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->load('Dogstronauts\AstroBook\\', __DIR__ . '/../src/')
         ->exclude([
-            __DIR__ . '/../src/DependencyInjection',
-            __DIR__ . '/../src/Entity',
             __DIR__ . '/../src/Kernel.php',
-            __DIR__ . '/../src/Security/DependencyInjection',
-            __DIR__ . '/../src/Auth/Model',
-            __DIR__ . '/../src/Fields/DependencyInjection',
-            __DIR__ . '/../src/Fields/Model',
+            __DIR__ . '/../src/*/DependencyInjection',
+            __DIR__ . '/../src/*/Model',
+            __DIR__ . '/../src/*/Event',
         ])
     ;
 

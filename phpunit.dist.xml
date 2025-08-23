@@ -21,17 +21,17 @@
         <server name="SYMFONY_PHPUNIT_VERSION" value="12.1"/>
     </php>
     <testsuites>
-        <testsuite name="Functional">
-            <directory>tests/Functional</directory>
-        </testsuite>
-        <testsuite name="Integration">
-            <directory>tests/Integration</directory>
-        </testsuite>
-        <testsuite name="Unit">
-            <directory>tests/Unit</directory>
-        </testsuite>
         <testsuite name="Users">
             <directory>tests/Users</directory>
+        </testsuite>
+        <testsuite name="Taxonomies">
+            <directory>tests/Taxonomies</directory>
+        </testsuite>
+        <testsuite name="Resources">
+            <directory>tests/Resources</directory>
+        </testsuite>
+        <testsuite name="Events">
+            <directory>tests/Events</directory>
         </testsuite>
     </testsuites>
 

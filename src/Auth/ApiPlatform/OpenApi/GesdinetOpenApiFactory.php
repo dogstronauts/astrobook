@@ -17,7 +17,7 @@ use ApiPlatform\OpenApi\Model\Operation;
 use ApiPlatform\OpenApi\Model\PathItem;
 use ApiPlatform\OpenApi\Model\RequestBody;
 use ApiPlatform\OpenApi\OpenApi;
-use Dogstronauts\AstroBook\ApiPlatform\OpenApi\OpenApiFactoryTrait;
+use Dogstronauts\AstroBook\Shared\ApiPlatform\OpenApi\OpenApiFactoryTrait;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
 use Symfony\Component\HttpFoundation\Response;

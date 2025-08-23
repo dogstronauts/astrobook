@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Dogstronauts\AstroBook\Tests\Users\Console\Command;
 
-use Dogstronauts\AstroBook\Shared\Users\Event\UserCreationEvent;
+use Dogstronauts\AstroBook\Users\Event\UserCreationEvent;
 use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
