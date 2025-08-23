@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Dogstronauts\AstroBook\Fixtures\Factory;
 
-use Dogstronauts\AstroBook\Shared\Contacts\Model\Contact;
+use Dogstronauts\AstroBook\Users\Model\Contact;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**

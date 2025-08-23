@@ -12,7 +12,6 @@ declare(strict_types=1);
 namespace Dogstronauts\AstroBook\Fixtures\Story;
 
 use Dogstronauts\AstroBook\Events\Model\EventStatus;
-use Dogstronauts\AstroBook\Fields\Model\FieldType;
 use Dogstronauts\AstroBook\Fixtures\Factory\AddressFactory;
 use Dogstronauts\AstroBook\Fixtures\Factory\ContactFactory;
 use Dogstronauts\AstroBook\Fixtures\Factory\EventFactory;
@@ -21,8 +20,9 @@ use Dogstronauts\AstroBook\Fixtures\Factory\ResourceTypeFactory;
 use Dogstronauts\AstroBook\Fixtures\Factory\TaxonomyFactory;
 use Dogstronauts\AstroBook\Fixtures\Factory\UserContactFactory;
 use Dogstronauts\AstroBook\Fixtures\Factory\UserFactory;
-use Dogstronauts\AstroBook\Shared\Contacts\Model\ContactType;
-use Dogstronauts\AstroBook\Shared\Taxonomies\Model\Taxonomy;
+use Dogstronauts\AstroBook\Resources\Model\FieldType;
+use Dogstronauts\AstroBook\Taxonomies\Model\Taxonomy;
+use Dogstronauts\AstroBook\Users\Model\ContactType;
 use Zenstruck\Foundry\Attribute\AsFixture;
 use Zenstruck\Foundry\Story;
 

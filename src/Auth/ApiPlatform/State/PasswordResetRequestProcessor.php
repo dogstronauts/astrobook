@@ -15,7 +15,7 @@ use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Dogstronauts\AstroBook\Auth\Model\PasswordResetRequest;
-use Dogstronauts\AstroBook\Shared\Users\Model\User;
+use Dogstronauts\AstroBook\Users\Model\User;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;

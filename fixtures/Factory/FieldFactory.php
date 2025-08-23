@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 namespace Dogstronauts\AstroBook\Fixtures\Factory;
 
-use Dogstronauts\AstroBook\Fields\Model\Field;
-use Dogstronauts\AstroBook\Fields\Model\FieldType;
+use Dogstronauts\AstroBook\Resources\Model\Field;
+use Dogstronauts\AstroBook\Resources\Model\FieldType;
 use Zenstruck\Foundry\ObjectFactory;
 
 /**

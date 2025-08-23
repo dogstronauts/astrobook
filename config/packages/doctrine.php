@@ -40,22 +40,15 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 'Taxonomies' => [
                     'type' => 'attribute',
                     'is_bundle' => false,
-                    'dir' => '%kernel.project_dir%/src/Shared/Taxonomies/Model',
-                    'prefix' => 'Dogstronauts\AstroBook\Shared\Taxonomies\Model',
+                    'dir' => '%kernel.project_dir%/src/Taxonomies/Model',
+                    'prefix' => 'Dogstronauts\AstroBook\Taxonomies\Model',
                     'alias' => 'Taxonomies',
-                ],
-                'Contacts' => [
-                    'type' => 'attribute',
-                    'is_bundle' => false,
-                    'dir' => '%kernel.project_dir%/src/Shared/Contacts/Model',
-                    'prefix' => 'Dogstronauts\AstroBook\Shared\Contacts\Model',
-                    'alias' => 'Contacts',
                 ],
                 'Users' => [
                     'type' => 'attribute',
                     'is_bundle' => false,
-                    'dir' => '%kernel.project_dir%/src/Shared/Users/Model',
-                    'prefix' => 'Dogstronauts\AstroBook\Shared\Users\Model',
+                    'dir' => '%kernel.project_dir%/src/Users/Model',
+                    'prefix' => 'Dogstronauts\AstroBook\Users\Model',
                     'alias' => 'Users',
                 ],
                 'Resources' => [

@@ -20,7 +20,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         'providers' => [
             'user_provider' => [
                 'entity' => [
-                    'class' => Dogstronauts\AstroBook\Shared\Users\Model\User::class,
+                    'class' => Dogstronauts\AstroBook\Users\Model\User::class,
                     'property' => 'identifier',
                 ],
             ],
