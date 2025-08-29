@@ -20,14 +20,13 @@ Homepage: https://astrobook.dogstronauts.com
 - Configuration
 - API & Documentation
 - Testing
+- Development Workflow & Quality
 - Contributing
-- Security
 - License
 - Support
 
 ## Overview
-AstroBook is a powerful system that centralizes event coordination and resource management across the galaxy. It is built with Symfony and API Platform, following DDD principles and offering first‑class developer tooling (OpenAPI export, CI, static analysis, fixtures, and functional tests).
-
+AstroBook centralizes event coordination and resource management across the galaxy. It is built with Symfony and API Platform, follows Domain-Driven Design (DDD), and ships with first‑class tooling (OpenAPI export, CI, static analysis, fixtures, and functional tests).
 
 ## Quick Start
 
@@ -40,23 +39,19 @@ cp .env .env.local
 ```
 
 2) Configure your environment (.env.local)
-- Open .env.local and uncomment the pre-filled variables.
-- These are sane defaults provided to let you run the project locally out of the box.
-- You can adjust them later as needed.
+- Uncomment and adjust variables as needed.
 
 3) Start the stack
 ```bash
 docker compose up -d --wait
 ```
 
-You should now see the API docs at: http://localhost/docs
+You should now see the API docs at: http://localhost:8080
 
-### Tips & next steps
-
+### Tips
 - Install dependencies & generate JWT keys:
 ```bash
 docker compose exec app-php composer install
-# Generate the JWT keypair (idempotent)
 docker compose exec app-php php bin/console lexik:jwt:generate-keypair --skip-if-exists
 ```
 
@@ -66,65 +61,38 @@ docker compose exec app-php php bin/console doctrine:migrations:migrate -n
 # (Dev) Load sample data
 docker compose exec app-php composer run run:fixtures
 ```
-
 - Generate a secure passphrase if needed:
 ```bash
 openssl rand -base64 32
 ```
 
-## Configuration
-Key files:
-- .env — defaults
-- .env.local — your local overrides
-- .env.test — test environment
-- compose.override.yaml — local Docker overrides
-
 ## API & Documentation
-- Swagger UI (API Platform): http://localhost/docs
+- Swagger UI (API Platform): http://localhost:8080/docs
 - Export OpenAPI JSON (root/openapi.json):
 ```bash
 docker compose exec app-php composer run run:export-openapi-doc
 ```
 
-
-
 ## Testing
-Run all tests:
+Run tests:
 ```bash
 docker compose exec app-php composer run run:tests
 # or
 docker compose exec app-php php bin/phpunit --testdox
 ```
-By type/group examples:
+## Development Workflow & Quality
 ```bash
-# Functional
-docker compose exec app-php php bin/phpunit tests/Functional --testdox
-# Integration
-docker compose exec app-php php bin/phpunit tests/Integration --testdox
-# Unit
-docker compose exec app-php php bin/phpunit tests/Unit --testdox
-# Group
-docker compose exec app-php php bin/phpunit --group=endpoints
+docker compose exec app-php composer run run:php-cs-fixer
+docker compose exec app-php composer run run:rector
 ```
-
 
 ## Contributing
 Contributions are welcome! Please see:
 - CONTRIBUTING.md
 - CODE_OF_CONDUCT.md
 
-Local quality tools:
-```bash
-docker compose exec app-php composer run run:php-cs-fixer
-docker compose exec app-php composer run run:rector
-docker compose exec app-php vendor/bin/phpstan analyse
-```
-
-## Security
-If you discover a security issue, please email: de25259ab1817bd62da981f2@dogstronauts.com. We will respond promptly.
-
 ## License
-MIT — see LICENCE.
+MIT - see LICENCE.
 
 ## Support
 - Issues: https://github.com/dogstronauts/astrobook/issues
