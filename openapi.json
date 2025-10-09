@@ -54,7 +54,7 @@
                     "content": {
                         "application/ld+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/PasswordResetRequest.jsonld-password-reset-request.write"
+                                "$ref": "#/components/schemas/PasswordResetRequest-password-reset-request.write"
                             }
                         },
                         "application/json": {
@@ -307,7 +307,7 @@
                     "content": {
                         "application/ld+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Event.jsonld-event.write"
+                                "$ref": "#/components/schemas/Event-event.write"
                             }
                         },
                         "application/json": {
@@ -590,7 +590,7 @@
                     "content": {
                         "application/merge-patch+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Event-event.write"
+                                "$ref": "#/components/schemas/Event-event.write.jsonMergePatch"
                             }
                         }
                     },
@@ -873,7 +873,7 @@
                     "content": {
                         "application/ld+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Resource.jsonld-resource.write"
+                                "$ref": "#/components/schemas/Resource-resource.write"
                             }
                         },
                         "application/json": {
@@ -1165,7 +1165,7 @@
                     "content": {
                         "application/merge-patch+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Resource-resource.write"
+                                "$ref": "#/components/schemas/Resource-resource.write.jsonMergePatch"
                             }
                         }
                     },
@@ -1376,7 +1376,7 @@
                     "content": {
                         "application/ld+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/ResourceType.jsonld-resource-type.write"
+                                "$ref": "#/components/schemas/ResourceType-resource-type.write"
                             }
                         },
                         "application/json": {
@@ -1680,7 +1680,7 @@
                     "content": {
                         "application/merge-patch+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/ResourceType-resource-type.write"
+                                "$ref": "#/components/schemas/ResourceType-resource-type.write.jsonMergePatch"
                             }
                         }
                     },
@@ -1870,7 +1870,7 @@
                     "content": {
                         "application/ld+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Taxonomy.jsonld-taxonomy.write"
+                                "$ref": "#/components/schemas/Taxonomy-taxonomy.write"
                             }
                         },
                         "application/json": {
@@ -2153,7 +2153,7 @@
                     "content": {
                         "application/merge-patch+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Taxonomy-taxonomy.write"
+                                "$ref": "#/components/schemas/Taxonomy-taxonomy.write.jsonMergePatch"
                             }
                         }
                     },
@@ -2322,7 +2322,7 @@
                     "content": {
                         "application/ld+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/User.jsonld-user.write"
+                                "$ref": "#/components/schemas/User-user.write"
                             }
                         },
                         "application/json": {
@@ -2563,7 +2563,7 @@
                     "content": {
                         "application/merge-patch+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/User-user.write"
+                                "$ref": "#/components/schemas/User-user.write.jsonMergePatch"
                             }
                         }
                     },
@@ -2856,6 +2856,39 @@
                     }
                 }
             },
+            "Event-event.write.jsonMergePatch": {
+                "type": "object",
+                "description": "Represents an event ressource withing AstroBook.",
+                "properties": {
+                    "label": {
+                        "maxLength": 64,
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "startAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "status": {
+                        "default": "draft",
+                        "type": "string",
+                        "enum": [
+                            "draft",
+                            "published"
+                        ]
+                    },
+                    "duration": {
+                        "minimum": 0,
+                        "description": "duration in minutes",
+                        "type": "integer"
+                    }
+                }
+            },
             "Event.jsonld-event.read": {
                 "allOf": [
                     {
@@ -2912,45 +2945,6 @@
                     }
                 ],
                 "description": "Represents an event ressource withing AstroBook."
-            },
-            "Event.jsonld-event.write": {
-                "type": "object",
-                "description": "Represents an event ressource withing AstroBook.",
-                "required": [
-                    "label",
-                    "startAt",
-                    "status",
-                    "duration"
-                ],
-                "properties": {
-                    "label": {
-                        "maxLength": 64,
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": [
-                            "string",
-                            "null"
-                        ]
-                    },
-                    "startAt": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "status": {
-                        "default": "draft",
-                        "type": "string",
-                        "enum": [
-                            "draft",
-                            "published"
-                        ]
-                    },
-                    "duration": {
-                        "minimum": 0,
-                        "description": "duration in minutes",
-                        "type": "integer"
-                    }
-                }
             },
             "Field-resource-type.read": {
                 "type": "object",
@@ -3071,43 +3065,6 @@
                     "label"
                 ]
             },
-            "Field.jsonld-resource-type.write": {
-                "type": "object",
-                "required": [
-                    "type",
-                    "label"
-                ],
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": [
-                            "string",
-                            "int",
-                            "float",
-                            "bool",
-                            "array",
-                            "date",
-                            "datetime",
-                            "json"
-                        ]
-                    },
-                    "label": {
-                        "type": "string"
-                    },
-                    "options": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "type": "string"
-                        }
-                    },
-                    "constraints": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/FieldConstraint.jsonld-resource-type.write"
-                        }
-                    }
-                }
-            },
             "FieldConstraint-resource-type.read": {
                 "type": "object",
                 "required": [
@@ -3159,23 +3116,6 @@
                     }
                 }
             },
-            "FieldConstraint.jsonld-resource-type.write": {
-                "type": "object",
-                "required": [
-                    "constraint"
-                ],
-                "properties": {
-                    "constraint": {
-                        "type": "string"
-                    },
-                    "options": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "type": "string"
-                        }
-                    }
-                }
-            },
             "HydraCollectionBaseSchema": {
                 "type": "object",
                 "required": [
@@ -3183,7 +3123,10 @@
                 ],
                 "properties": {
                     "member": {
-                        "type": "array"
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
                     },
                     "totalItems": {
                         "type": "integer",
@@ -3265,10 +3208,6 @@
                 }
             },
             "HydraItemBaseSchema": {
-                "required": [
-                    "@id",
-                    "@type"
-                ],
                 "type": "object",
                 "properties": {
                     "@context": {
@@ -3303,30 +3242,13 @@
                     "@type": {
                         "type": "string"
                     }
-                }
+                },
+                "required": [
+                    "@id",
+                    "@type"
+                ]
             },
             "PasswordResetRequest-password-reset-request.write": {
-                "type": "object",
-                "required": [
-                    "identifier",
-                    "newPassword",
-                    "confirmPassword"
-                ],
-                "properties": {
-                    "identifier": {
-                        "type": "string"
-                    },
-                    "newPassword": {
-                        "minLength": 8,
-                        "maxLength": 128,
-                        "type": "string"
-                    },
-                    "confirmPassword": {
-                        "type": "string"
-                    }
-                }
-            },
-            "PasswordResetRequest.jsonld-password-reset-request.write": {
                 "type": "object",
                 "required": [
                     "identifier",
@@ -3415,6 +3337,33 @@
                     }
                 }
             },
+            "Resource-resource.write.jsonMergePatch": {
+                "type": "object",
+                "description": "Represents a resource within the AstroBook platform.\n\nA resource refers to any reservable asset, such as \"Command Module #3\",\n\"Orbital Lab A\", or \"Hydroponic Chamber 7B\". Each resource is linked to a\nResourceType that defines its expected structure and behavior.",
+                "properties": {
+                    "type": {
+                        "description": "Defines the type this resource belongs to (e.g. \"Orbital Lab\", \"EVA Simulator\").",
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "label": {
+                        "maxLength": 64,
+                        "description": "Short name used to identify the resource in listings and interfaces.",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Optional operational or contextual information about the resource.",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                }
+            },
             "Resource.jsonld-resource.read": {
                 "allOf": [
                     {
@@ -3458,37 +3407,6 @@
                     }
                 ],
                 "description": "Represents a resource within the AstroBook platform.\n\nA resource refers to any reservable asset, such as \"Command Module #3\",\n\"Orbital Lab A\", or \"Hydroponic Chamber 7B\". Each resource is linked to a\nResourceType that defines its expected structure and behavior."
-            },
-            "Resource.jsonld-resource.write": {
-                "type": "object",
-                "description": "Represents a resource within the AstroBook platform.\n\nA resource refers to any reservable asset, such as \"Command Module #3\",\n\"Orbital Lab A\", or \"Hydroponic Chamber 7B\". Each resource is linked to a\nResourceType that defines its expected structure and behavior.",
-                "required": [
-                    "type",
-                    "label"
-                ],
-                "properties": {
-                    "type": {
-                        "description": "Defines the type this resource belongs to (e.g. \"Orbital Lab\", \"EVA Simulator\").",
-                        "type": [
-                            "string",
-                            "null"
-                        ],
-                        "format": "iri-reference",
-                        "example": "https://example.com/"
-                    },
-                    "label": {
-                        "maxLength": 64,
-                        "description": "Short name used to identify the resource in listings and interfaces.",
-                        "type": "string"
-                    },
-                    "description": {
-                        "description": "Optional operational or contextual information about the resource.",
-                        "type": [
-                            "string",
-                            "null"
-                        ]
-                    }
-                }
             },
             "ResourceType-resource-type.read": {
                 "type": "object",
@@ -3545,6 +3463,28 @@
                     }
                 }
             },
+            "ResourceType-resource-type.write.jsonMergePatch": {
+                "type": "object",
+                "description": "Represents a resource type within the application.\n\nThis class defines the structure and attributes that a resource of this type must have.\nIt allows for dynamic configuration of resource properties based on their type.",
+                "properties": {
+                    "label": {
+                        "maxLength": 32,
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "fields": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Field-resource-type.write"
+                        }
+                    }
+                }
+            },
             "ResourceType.jsonld-resource-type.read": {
                 "allOf": [
                     {
@@ -3581,31 +3521,6 @@
                     }
                 ],
                 "description": "Represents a resource type within the application.\n\nThis class defines the structure and attributes that a resource of this type must have.\nIt allows for dynamic configuration of resource properties based on their type."
-            },
-            "ResourceType.jsonld-resource-type.write": {
-                "type": "object",
-                "description": "Represents a resource type within the application.\n\nThis class defines the structure and attributes that a resource of this type must have.\nIt allows for dynamic configuration of resource properties based on their type.",
-                "required": [
-                    "label"
-                ],
-                "properties": {
-                    "label": {
-                        "maxLength": 32,
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": [
-                            "string",
-                            "null"
-                        ]
-                    },
-                    "fields": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Field.jsonld-resource-type.write"
-                        }
-                    }
-                }
             },
             "Taxonomy-taxonomy.read": {
                 "type": "object",
@@ -3670,6 +3585,33 @@
                     }
                 }
             },
+            "Taxonomy-taxonomy.write.jsonMergePatch": {
+                "type": "object",
+                "description": "Represents a taxonomy within AstroBook.\n\nTaxonomies are used to categorize models in a hierarchical structure,\nallowing for organization and classification of content throughout the platform.",
+                "properties": {
+                    "label": {
+                        "minLength": 3,
+                        "maxLength": 32,
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "parent": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/Taxonomy-taxonomy.write"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    }
+                }
+            },
             "Taxonomy.jsonld-taxonomy.read": {
                 "allOf": [
                     {
@@ -3709,36 +3651,6 @@
                     }
                 ],
                 "description": "Represents a taxonomy within AstroBook.\n\nTaxonomies are used to categorize models in a hierarchical structure,\nallowing for organization and classification of content throughout the platform."
-            },
-            "Taxonomy.jsonld-taxonomy.write": {
-                "type": "object",
-                "description": "Represents a taxonomy within AstroBook.\n\nTaxonomies are used to categorize models in a hierarchical structure,\nallowing for organization and classification of content throughout the platform.",
-                "required": [
-                    "label"
-                ],
-                "properties": {
-                    "label": {
-                        "minLength": 3,
-                        "maxLength": 32,
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": [
-                            "string",
-                            "null"
-                        ]
-                    },
-                    "parent": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/Taxonomy.jsonld-taxonomy.write"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    }
-                }
             },
             "User-user.read": {
                 "type": "object",
@@ -3793,6 +3705,30 @@
                     }
                 }
             },
+            "User-user.write.jsonMergePatch": {
+                "type": "object",
+                "description": "Represents a user account within the application.\n\nUsed to create, authenticate, and manage users who access the platform,\nwith permissions defined through configurable roles.",
+                "properties": {
+                    "identifier": {
+                        "maxLength": 128,
+                        "type": "string"
+                    },
+                    "plainPassword": {
+                        "minLength": 8,
+                        "maxLength": 128,
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
             "User.jsonld-user.read": {
                 "allOf": [
                     {
@@ -3824,34 +3760,6 @@
                     }
                 ],
                 "description": "Represents a user account within the application.\n\nUsed to create, authenticate, and manage users who access the platform,\nwith permissions defined through configurable roles."
-            },
-            "User.jsonld-user.write": {
-                "type": "object",
-                "description": "Represents a user account within the application.\n\nUsed to create, authenticate, and manage users who access the platform,\nwith permissions defined through configurable roles.",
-                "required": [
-                    "identifier",
-                    "roles"
-                ],
-                "properties": {
-                    "identifier": {
-                        "maxLength": 128,
-                        "type": "string"
-                    },
-                    "plainPassword": {
-                        "minLength": 8,
-                        "maxLength": 128,
-                        "type": [
-                            "string",
-                            "null"
-                        ]
-                    },
-                    "roles": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    }
-                }
             }
         },
         "responses": {},
