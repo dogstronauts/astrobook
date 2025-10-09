@@ -4,5 +4,5 @@ This project follows a [Code of Conduct][code_of_conduct] in order to ensure an 
 Please read the full text for understanding the accepted and unaccepted behavior.
 Please read also the [reporting guidelines][guidelines], in case you encountered or witnessed any misbehavior.
 
-[code_of_conduct]: https://astrobook.dogstronauts.com/...
-[guidelines]: https://astrobook.dogstronauts.com/....
+[code_of_conduct]: https://astrobook.dogstronauts.com/current/contributing/code_of_conduct/code_of_conduct.html
+[guidelines]: https://astrobook.dogstronauts.com/current/contributing/code_of_conduct/reporting_guidelines.html
