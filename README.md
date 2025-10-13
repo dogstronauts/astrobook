@@ -88,8 +88,8 @@ docker compose exec app-php composer run run:rector
 
 ## Contributing
 Contributions are welcome! Please see:
-- CONTRIBUTING.md
-- CODE_OF_CONDUCT.md
+- [CONTRIBUTING.md](CONTRIBUTING.md)
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
 
 ## License
 MIT - see LICENCE.
