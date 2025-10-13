@@ -32,6 +32,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $parameters->set('env(MAILER_FROM_DEFAULT)', 'Intersideral Void <intersideral-void@dogstronauts.com>');
 
+    $parameters->set('env(DEFAULT_URI)', 'http://localhost');
+
     $parameters->set('mailer.dsn', '%env(MAILER_DSN)%');
 
     $parameters->set('mailer.from_default', '%env(MAILER_FROM_DEFAULT)%');
