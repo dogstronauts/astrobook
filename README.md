@@ -4,7 +4,7 @@ Forged in the legacy of Sirius, AstroBook guides the Dogstronauts in orchestrati
 
 [![PHP](https://img.shields.io/badge/PHP-8.4-777bb3?logo=php&logoColor=white)](https://www.php.net/releases/8.4/en.php)
 [![Symfony](https://img.shields.io/badge/Symfony-7.3-000?logo=symfony)](https://symfony.com/)
-[![API Platform](https://img.shields.io/badge/API%20Platform-4.1-4eb7bc)](https://api-platform.com/)
+[![API Platform](https://img.shields.io/badge/API%20Platform-4.2-4eb7bc)](https://api-platform.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENCE)
 
 [![Tests](https://github.com/dogstronauts/astrobook/actions/workflows/tests.yaml/badge.svg?branch=1.0)](https://github.com/dogstronauts/astrobook/actions/workflows/tests.yaml)
