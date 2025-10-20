@@ -26,6 +26,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             'make_story' => [
                 'default_namespace' => 'Dogstronauts\AstroBook\Fixtures\Story',
             ],
+            'enable_auto_refresh_with_lazy_objects' => true,
         ]);
     }
 };
