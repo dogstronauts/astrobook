@@ -18,7 +18,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $parameters->set('env(APP_SECRET)', '634ce8ec464ffdac781c6c986e1b4769');
 
-    $parameters->set('env(DATABASE_URL)', 'postgresql://user:password@app-database:5432/dbname?serverVersion=17&charset=utf8');
+    $parameters->set('env(DATABASE_URL)', 'postgresql://user:password@app-database:5432/dbname?serverVersion=18&charset=utf8');
 
     $parameters->set('env(CORS_ALLOW_ORIGIN)', '^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$');
 
