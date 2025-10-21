@@ -73,8 +73,8 @@
         "symfony/polyfill-php83": "*"
     },
     "require-dev": {
-        "dama/doctrine-test-bundle": "^8.3",
-        "doctrine/doctrine-fixtures-bundle": "^4.2",
+        "dama/doctrine-test-bundle": "^8.4",
+        "doctrine/doctrine-fixtures-bundle": "^4.3",
         "friendsofphp/php-cs-fixer": "^3.8",
         "mtdowling/jmespath.php": "^2.8",
         "phpstan/phpstan": "^2.1",
@@ -86,7 +86,7 @@
         "symfony/stopwatch": "7.3.*",
         "symfony/web-profiler-bundle": "7.3.*",
         "zenstruck/browser": "^1.9",
-        "zenstruck/foundry": "^2.7"
+        "zenstruck/foundry": "2.6.3"
     },
     "config": {
         "allow-plugins": {
