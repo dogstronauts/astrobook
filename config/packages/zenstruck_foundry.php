@@ -26,8 +26,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             'make_story' => [
                 'default_namespace' => 'Dogstronauts\AstroBook\Fixtures\Story',
             ],
-            //            in anticipation of the upgrade of zenstruck/foundry to 2.7. Currently a bug
-            //            'enable_auto_refresh_with_lazy_objects' => true,
+            'enable_auto_refresh_with_lazy_objects' => true,
         ]);
     }
 };
