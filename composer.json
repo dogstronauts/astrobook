@@ -120,12 +120,12 @@
         }
     },
     "scripts": {
-        "run:export-doc": "docker run --rm -v $(pwd):/data -w /data phpdoc/phpdoc",
-        "run:export-openapi-doc": "php bin/console api:openapi:export > openapi.json",
-        "run:php-cs-fixer": "@php -r \"passthru('php vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php');\"",
-        "run:rector": "php bin/rector",
-        "run:tests": "php bin/phpunit --testdox",
-        "run:fixtures": "php bin/console f:l -n",
+        "export-doc": "docker run --rm -v $(pwd):/data -w /data phpdoc/phpdoc",
+        "export-openapi-doc": "php bin/console api:openapi:export > openapi.json",
+        "php-cs-fixer": "@php -r \"passthru('php vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php');\"",
+        "rector": "php bin/rector",
+        "tests": "php bin/phpunit --testdox",
+        "fixtures": "php bin/console f:l -n",
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
