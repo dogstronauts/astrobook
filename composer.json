@@ -39,7 +39,7 @@
         "doctrine/orm": "^3.5",
         "gesdinet/jwt-refresh-token-bundle": "^1.5",
         "lexik/jwt-authentication-bundle": "^3.1",
-        "nelmio/cors-bundle": "^2.5",
+        "nelmio/cors-bundle": "^2.6",
         "phpdocumentor/reflection-docblock": "^5.6",
         "phpstan/phpdoc-parser": "^2.3",
         "symfony/asset": "7.3.*",
@@ -86,7 +86,7 @@
         "symfony/stopwatch": "7.3.*",
         "symfony/web-profiler-bundle": "7.3.*",
         "zenstruck/browser": "^1.9",
-        "zenstruck/foundry": "2.6.3"
+        "zenstruck/foundry": "^2.7"
     },
     "config": {
         "allow-plugins": {
@@ -120,12 +120,12 @@
         }
     },
     "scripts": {
-        "run:export-doc": "docker run --rm -v $(pwd):/data -w /data phpdoc/phpdoc",
-        "run:export-openapi-doc": "php bin/console api:openapi:export > openapi.json",
-        "run:php-cs-fixer": "@php -r \"passthru('php vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php');\"",
-        "run:rector": "php bin/rector",
-        "run:tests": "php bin/phpunit --testdox",
-        "run:fixtures": "php bin/console f:l -n",
+        "export-doc": "docker run --rm -v $(pwd):/data -w /data phpdoc/phpdoc",
+        "export-openapi-doc": "php bin/console api:openapi:export > openapi.json",
+        "php-cs-fixer": "@php -r \"passthru('php vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php');\"",
+        "rector": "php bin/rector",
+        "tests": "php bin/phpunit --testdox",
+        "fixtures": "php bin/console f:l -n",
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"

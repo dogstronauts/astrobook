@@ -72,4 +72,4 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Run Rector
-        run: composer run:rector -- --dry-run
+        run: composer run rector -- --dry-run
