@@ -5,6 +5,7 @@ x-app-nginx-attributes: &app-nginx-attributes
 
 x-app-mailer-attributes: &app-mailer-attributes
   image: axllent/mailpit
+  restart: unless-stopped
   ports:
     - "1025:1025"
     - "8025:8025"
