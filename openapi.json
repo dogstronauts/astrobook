@@ -145,6 +145,9 @@
                                         },
                                         {
                                             "type": "object",
+                                            "required": [
+                                                "member"
+                                            ],
                                             "properties": {
                                                 "member": {
                                                     "type": "array",
@@ -675,6 +678,9 @@
                                         },
                                         {
                                             "type": "object",
+                                            "required": [
+                                                "member"
+                                            ],
                                             "properties": {
                                                 "member": {
                                                     "type": "array",
@@ -1193,6 +1199,9 @@
                                         },
                                         {
                                             "type": "object",
+                                            "required": [
+                                                "member"
+                                            ],
                                             "properties": {
                                                 "member": {
                                                     "type": "array",
@@ -1708,6 +1717,9 @@
                                         },
                                         {
                                             "type": "object",
+                                            "required": [
+                                                "member"
+                                            ],
                                             "properties": {
                                                 "member": {
                                                     "type": "array",
@@ -2181,6 +2193,9 @@
                                         },
                                         {
                                             "type": "object",
+                                            "required": [
+                                                "member"
+                                            ],
                                             "properties": {
                                                 "member": {
                                                     "type": "array",
@@ -3118,16 +3133,7 @@
             },
             "HydraCollectionBaseSchema": {
                 "type": "object",
-                "required": [
-                    "member"
-                ],
                 "properties": {
-                    "member": {
-                        "type": "array",
-                        "items": {
-                            "type": "object"
-                        }
-                    },
                     "totalItems": {
                         "type": "integer",
                         "minimum": 0
