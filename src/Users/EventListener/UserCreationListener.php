@@ -39,6 +39,7 @@ final readonly class UserCreationListener
         try {
             $this->entityManager->persist($user);
             $this->entityManager->flush();
+            $event->createdUser = $user;
         } catch (\Throwable $throwable) {
             throw Exception::persistenceFailed($throwable->getMessage(), $throwable);
         }

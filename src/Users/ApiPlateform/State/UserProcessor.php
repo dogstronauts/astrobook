@@ -13,9 +13,13 @@ namespace Dogstronauts\AstroBook\Users\ApiPlateform\State;
 
 use ApiPlatform\Metadata\DeleteOperationInterface;
 use ApiPlatform\Metadata\Operation;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
 use ApiPlatform\State\ProcessorInterface;
+use Dogstronauts\AstroBook\Users\Event\UserCreationEvent;
 use Dogstronauts\AstroBook\Users\Model\User;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
@@ -34,6 +38,7 @@ final readonly class UserProcessor implements ProcessorInterface
         private ProcessorInterface $persistProcessor,
         #[Autowire(service: 'api_platform.doctrine.orm.state.remove_processor')]
         private ProcessorInterface $removeProcessor,
+        private EventDispatcherInterface $eventDispatcher
     ) {
     }
 
@@ -59,10 +64,18 @@ final readonly class UserProcessor implements ProcessorInterface
             return $this->removeProcessor->process($data, $operation, $uriVariables, $context);
         }
 
-        if ($data->plainPassword) {
-            $data->password = $this->passwordHasher->hashPassword($data, $data->plainPassword);
+        if ($operation instanceof Post) {
+            $this->eventDispatcher->dispatch($event = new UserCreationEvent(identifier: $data->identifier, plainPassword: $data->plainPassword, roles: $data->roles));
+
+            return $event->createdUser;
         }
 
-        return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
+        if ($operation instanceof Patch) {
+            if ($data->plainPassword) {
+                $data->password = $this->passwordHasher->hashPassword($data, $data->plainPassword);
+            }
+
+            return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
+        }
     }
 }
