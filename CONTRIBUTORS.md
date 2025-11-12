@@ -7,3 +7,4 @@ The GitHub profile in parentheses allows you to get more information:
 - David Pelletier-Ulrich ([mztrix](https://github.com/mztrix))
 - Damien Lebon ([DamienL97r](https://github.com/DamienL97r))
 - Ben Zielke ([BenZen999999](https://github.com/BenZen999999))
+- Nicolas Boyard ([boyardnicolas](https://github.com/boyardnicolas))
