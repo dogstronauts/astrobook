@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Dogstronauts\AstroBook\Users\Event;
 
+use Dogstronauts\AstroBook\Users\Model\User;
 use Symfony\Contracts\EventDispatcher\Event;
 
 /**
@@ -21,6 +22,8 @@ use Symfony\Contracts\EventDispatcher\Event;
  */
 final class UserCreationEvent extends Event
 {
+    public User $createdUser;
+
     public function __construct(
         public readonly string $identifier,
         public readonly string $plainPassword,
