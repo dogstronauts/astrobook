@@ -3132,47 +3132,59 @@
                 }
             },
             "HydraCollectionBaseSchema": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/HydraCollectionBaseSchemaNoPagination"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "view": {
+                                "type": "object",
+                                "properties": {
+                                    "@id": {
+                                        "type": "string",
+                                        "format": "iri-reference"
+                                    },
+                                    "@type": {
+                                        "type": "string"
+                                    },
+                                    "first": {
+                                        "type": "string",
+                                        "format": "iri-reference"
+                                    },
+                                    "last": {
+                                        "type": "string",
+                                        "format": "iri-reference"
+                                    },
+                                    "previous": {
+                                        "type": "string",
+                                        "format": "iri-reference"
+                                    },
+                                    "next": {
+                                        "type": "string",
+                                        "format": "iri-reference"
+                                    }
+                                },
+                                "example": {
+                                    "@id": "string",
+                                    "type": "string",
+                                    "first": "string",
+                                    "last": "string",
+                                    "previous": "string",
+                                    "next": "string"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "HydraCollectionBaseSchemaNoPagination": {
                 "type": "object",
                 "properties": {
                     "totalItems": {
                         "type": "integer",
                         "minimum": 0
-                    },
-                    "view": {
-                        "type": "object",
-                        "properties": {
-                            "@id": {
-                                "type": "string",
-                                "format": "iri-reference"
-                            },
-                            "@type": {
-                                "type": "string"
-                            },
-                            "first": {
-                                "type": "string",
-                                "format": "iri-reference"
-                            },
-                            "last": {
-                                "type": "string",
-                                "format": "iri-reference"
-                            },
-                            "previous": {
-                                "type": "string",
-                                "format": "iri-reference"
-                            },
-                            "next": {
-                                "type": "string",
-                                "format": "iri-reference"
-                            }
-                        },
-                        "example": {
-                            "@id": "string",
-                            "type": "string",
-                            "first": "string",
-                            "last": "string",
-                            "previous": "string",
-                            "next": "string"
-                        }
                     },
                     "search": {
                         "type": "object",
