@@ -1,17 +1,12 @@
 name: Security Checks
 
 on:
-  push:
-    branches: [ '1.0' ]  # This will run when a PR is merged into 1.0
-  pull_request:
-    branches: [ '1.0' ]
-  schedule:
-    - cron: '0 0 * * 0'  # Run weekly on Sunday at midnight
+  workflow_call:
   workflow_dispatch:
 
 jobs:
-  security-check:
-    name: Symfony Security Check
+  security:
+    name: Security Audits
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -27,79 +22,25 @@ jobs:
         id: composer-cache
         run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
-      - name: Cache dependencies
+      - name: Cache Composer dependencies
         uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
+
+      - name: Cache vendor directory
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-vendor-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-vendor-
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Run Symfony Security Checker
         uses: symfonycorp/security-checker-action@v5
-
-#  dependency-review:
-#    name: Dependency Review
-#    runs-on: ubuntu-latest
-#    if: github.event_name == 'pull_request'
-#    steps:
-#      - name: Checkout code
-#        uses: actions/checkout@v4
-#
-#      - name: Dependency Review
-#        uses: actions/dependency-review-action@v3
-#        with:
-#          fail-on-severity: high
-
-#  code-scanning:
-#    name: CodeQL Analysis
-#    runs-on: ubuntu-latest
-#    permissions:
-#      security-events: write
-#      actions: read
-#      contents: read
-#    steps:
-#      - name: Checkout code
-#        uses: actions/checkout@v4
-#
-#      - name: Initialize CodeQL
-#        uses: github/codeql-action/init@v2
-#        with:
-#          languages: php
-#
-#      - name: Perform CodeQL Analysis
-#        uses: github/codeql-action/analyze@v2
-#        with:
-#          category: "/language:php"
-
-  composer-audit:
-    name: Composer Audit
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.4'
-          coverage: none
-
-      - name: Get Composer Cache Directory
-        id: composer-cache
-        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
-
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Run Composer Audit
         run: composer audit
