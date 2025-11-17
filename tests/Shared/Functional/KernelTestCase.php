@@ -24,6 +24,7 @@ use Zenstruck\Foundry\Test\Factories;
 abstract class KernelTestCase extends baseKernelTestCase
 {
     use Factories;
+
     use HasBrowser;
 
     protected function createUser(

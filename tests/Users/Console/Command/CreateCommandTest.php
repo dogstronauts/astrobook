@@ -44,6 +44,7 @@ final class CreateCommandTest extends KernelTestCase
         $this->commandTester = new CommandTester($command);
     }
 
+    #[\Override]
     protected function tearDown(): void
     {
         $this->dispatchedEvents = [];

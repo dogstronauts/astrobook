@@ -48,7 +48,7 @@ final readonly class PasswordResetConfirmWebhookConsumer implements ConsumerInte
             $this->entityManager->remove($passwordResetRequest);
             $this->entityManager->flush();
             $this->entityManager->commit();
-        } catch (\Throwable $throwable) {
+        } catch (\Throwable) {
             $this->entityManager->rollback();
         }
     }

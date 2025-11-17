@@ -23,26 +23,22 @@ use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Decorates the API Platform's OpenApiFactory to add JWT refresh token
- * endpoint documentation to the OpenAPI specification. It adds a dedicated path
- * for token refresh operations with appropriate request/response schemas.
+ * Replacement for Lexik JWT Authentication Bundle OpenAPI factory to avoid
+ * deprecated ArrayObject usage (object as backing array).
  *
- * The factory implements the OpenApiFactoryInterface and uses the decorator pattern
- * to extend the core API Platform functionality without modifying it directly.
- *
- * It exposes a POST endpoint at /auth/refresh_tokens that accepts a refresh token and
- * returns a new JWT token along with a new refresh token. This documentation helps
- * API consumers understand how to refresh authentication tokens when they expire.
+ * We keep the same behavior while ensuring we only pass PHP arrays to ArrayObject.
  */
 #[AsDecorator('api_platform.openapi.factory')]
-#[AsAlias('gesdinet_jwt_refresh.api_platform.openapi.factory', public: false)]
-final readonly class GesdinetOpenApiFactory implements OpenApiFactoryInterface
+#[AsAlias('lexik_jwt_authentication.api_platform.openapi.factory', public: false)]
+final readonly class LexikOpenApiFactory implements OpenApiFactoryInterface
 {
     use OpenApiFactoryTrait;
 
     public function __construct(
         private OpenApiFactoryInterface $decorated,
-        private ?string $refreshTokenPath = null
+        private string $checkPath = '/auth/login',
+        private string $usernamePath = 'identifier',
+        private string $passwordPath = 'password',
     ) {
     }
 
@@ -50,13 +46,23 @@ final readonly class GesdinetOpenApiFactory implements OpenApiFactoryInterface
     {
         $openApi = ($this->decorated)($context);
 
-        $openApi->getPaths()->addPath('/auth/refresh_tokens', new PathItem()->withPost(
+        // Security scheme
+        $openApi->getComponents()->getSecuritySchemes()->offsetSet(
+            'JWT',
+            new \ArrayObject([
+                'type' => 'http',
+                'scheme' => 'bearer',
+                'bearerFormat' => 'JWT',
+            ])
+        );
+
+        $openApi->getPaths()->addPath($this->checkPath, new PathItem()->withPost(
             new Operation()
-                ->withOperationId('api_auth_refresh_tokens_post')
+                ->withOperationId('api_auth_post')
                 ->withTags(['Auth'])
                 ->withResponses([
                     Response::HTTP_OK => [
-                        'description' => 'User token refreshed.',
+                        'description' => 'User token created',
                         'content' => [
                             'application/json' => [
                                 'schema' => [
@@ -67,27 +73,25 @@ final readonly class GesdinetOpenApiFactory implements OpenApiFactoryInterface
                                             'type' => 'string',
                                             'nullable' => false,
                                         ],
-                                        'refresh_token' => [
-                                            'readOnly' => true,
-                                            'type' => 'string',
-                                            'nullable' => false,
-                                        ],
                                     ],
-                                    'required' => ['token', 'refresh_token'],
+                                    'required' => ['token'],
                                 ],
                             ],
                         ],
                     ],
                 ])
-                ->withSummary('Refresh a user token.')
-                ->withDescription('Refresh a user token.')
+                ->withSummary('Creates a user token.')
+                ->withDescription('Creates a user token.')
                 ->withRequestBody(
                     new RequestBody()
-                        ->withDescription('The refresh_token to refresh token')
+                        ->withDescription('The login data')
                         ->withContent(new \ArrayObject([
                             'application/json' => new MediaType(new \ArrayObject([
                                 'type' => 'object',
-                                'properties' => $properties = $this->getJsonSchemaFromPathParts(explode('.', 'refresh_token')),
+                                'properties' => $properties = array_merge_recursive(
+                                    $this->getJsonSchemaFromPathParts(explode('.', $this->usernamePath)),
+                                    $this->getJsonSchemaFromPathParts(explode('.', $this->passwordPath))
+                                ),
                                 'required' => array_keys($properties),
                             ])),
                         ]))

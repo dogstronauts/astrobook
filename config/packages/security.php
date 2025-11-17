@@ -27,7 +27,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ],
         'firewalls' => [
             'dev' => [
-                'pattern' => '^/_(profiler|wdt)',
+                'pattern' => '^/(_profiler|_wdt|bundles|docs)/',
                 'security' => false,
             ],
             'main' => [
