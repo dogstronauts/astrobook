@@ -13,14 +13,14 @@ namespace Dogstronauts\AstroBook\Fixtures\Factory;
 
 use Dogstronauts\AstroBook\Users\Model\User;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
+use Zenstruck\Foundry\Persistence\PersistentObjectFactory;
 
 /**
  * @internal
  *
- * @extends PersistentProxyObjectFactory<User>
+ * @extends PersistentObjectFactory<User>
  */
-class UserFactory extends PersistentProxyObjectFactory
+class UserFactory extends PersistentObjectFactory
 {
     public function __construct(private readonly UserPasswordHasherInterface $userPasswordHasher)
     {
