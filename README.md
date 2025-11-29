@@ -59,7 +59,7 @@ docker compose exec app-php php bin/console lexik:jwt:generate-keypair --skip-if
 ```bash
 docker compose exec app-php php bin/console doctrine:migrations:migrate -n
 # (Dev) Load sample data
-docker compose exec app-php composer run run:fixtures
+docker compose exec app-php composer run fixtures
 ```
 - Generate a secure passphrase if needed:
 ```bash
@@ -70,20 +70,20 @@ openssl rand -base64 32
 - Swagger UI (API Platform): http://localhost:8080/docs
 - Export OpenAPI JSON (root/openapi.json):
 ```bash
-docker compose exec app-php composer run run:export-openapi-doc
+docker compose exec app-php composer run export-openapi-doc
 ```
 
 ## Testing
 Run tests:
 ```bash
-docker compose exec app-php composer run run:tests
-# or
+docker compose exec app-php composer run tests
+# prefer running phpunit inside the container to keep DB access available
 docker compose exec app-php php bin/phpunit --testdox
 ```
 ## Development Workflow & Quality
 ```bash
-docker compose exec app-php composer run run:php-cs-fixer
-docker compose exec app-php composer run run:rector
+docker compose exec app-php composer run php-cs-fixer
+docker compose exec app-php composer run rector
 ```
 
 ## Contributing
