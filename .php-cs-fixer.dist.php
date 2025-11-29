@@ -24,7 +24,8 @@ $config = new PhpCsFixer\Config();
 
 $finder = new PhpCsFixer\Finder()
     ->in(__DIR__)
-    ->exclude(['var', 'vendor']);
+    ->exclude(['var', 'vendor'])
+    ->notPath('config/reference.php');
 return $config
     ->setRules([
         '@PER' => true,

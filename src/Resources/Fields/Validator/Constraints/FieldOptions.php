@@ -24,6 +24,7 @@ final class FieldOptions extends Constraint
 
     public string $message = '{{ errorMessage }}';
 
+    #[\Override]
     public function getTargets(): string
     {
         return self::CLASS_CONSTRAINT;

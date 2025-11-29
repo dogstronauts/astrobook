@@ -14,7 +14,10 @@ namespace Dogstronauts\AstroBook\Users\Model;
 enum ContactType: string
 {
     case DEFAULT = 'owner';
+
     case BILLING = 'billing';
+
     case ADMINISTRATIVE = 'administrative';
+
     case TECHNICAL = 'technical';
 }

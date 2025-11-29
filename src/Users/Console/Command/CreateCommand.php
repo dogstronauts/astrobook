@@ -37,10 +37,15 @@ use Symfony\Component\Validator\Validation;
  * and user creation to specialized services. Supports both interactive
  * and non-interactive modes for better automation capabilities.
  */
-#[AsCommand(
-    name: 'users:create',
-    description: 'Create a new user interactively or via arguments'
-)]
+#[AsCommand(name: 'users:create', description: 'Create a new user interactively or via arguments', help: <<<'TXT'
+    Create a new user either interactively or by providing arguments.
+
+    Interactive mode (no arguments):
+      <info>php bin/console users:create</info>
+
+    Non-interactive mode (with arguments):
+      <info>php bin/console users:create user@example.com mypassword ROLE_USER,ROLE_ADMIN</info>
+    TXT)]
 final class CreateCommand extends Command
 {
     private const array AVAILABLE_ROLES = ['ROLE_PLATFORM'];
@@ -89,17 +94,6 @@ final class CreateCommand extends Command
 
     protected function configure(): void
     {
-        $this
-            ->setHelp(<<<'HELP'
-                Create a new user either interactively or by providing arguments.
-
-                Interactive mode (no arguments):
-                  <info>php bin/console users:create</info>
-
-                Non-interactive mode (with arguments):
-                  <info>php bin/console users:create user@example.com mypassword ROLE_USER,ROLE_ADMIN</info>
-                HELP)
-        ;
     }
 
     private function createQuestion(string $question, callable $validator, ?int $maxAttempts = null): Question
@@ -197,7 +191,7 @@ final class CreateCommand extends Command
 
     private function normalizeRoles(string $roles): array
     {
-        return array_values(array_filter(array_map('trim', explode(',', $roles))));
+        return array_values(array_filter(array_map(trim(...), explode(',', $roles))));
     }
 
     private function denormalizeRoles(array $roles): string

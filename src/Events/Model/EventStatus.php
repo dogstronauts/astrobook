@@ -14,5 +14,6 @@ namespace Dogstronauts\AstroBook\Events\Model;
 enum EventStatus: string
 {
     case DRAFT = 'draft';
+
     case PUBLISHED = 'published';
 }

@@ -26,6 +26,63 @@
         }
     ],
     "paths": {
+        "/auth/login": {
+            "post": {
+                "operationId": "api_auth_post",
+                "tags": [
+                    "Auth"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User token created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "readOnly": true,
+                                            "type": "string",
+                                            "nullable": false
+                                        }
+                                    },
+                                    "required": [
+                                        "token"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Creates a user token.",
+                "description": "Creates a user token.",
+                "requestBody": {
+                    "description": "The login data",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "identifier": {
+                                        "type": "string",
+                                        "nullable": false
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "nullable": false
+                                    }
+                                },
+                                "required": [
+                                    "identifier",
+                                    "password"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        },
         "/auth/password_reset_requests": {
             "post": {
                 "operationId": "api_authpassword_reset_requests_post",
@@ -196,8 +253,7 @@
                         "schema": {
                             "type": "integer",
                             "default": 25,
-                            "minimum": 0,
-                            "maximum": 30
+                            "minimum": 0
                         },
                         "style": "form",
                         "explode": false
@@ -601,63 +657,6 @@
                 }
             }
         },
-        "/auth/login": {
-            "post": {
-                "operationId": "login_check_post",
-                "tags": [
-                    "Login Check"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "User token created",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "token": {
-                                            "readOnly": true,
-                                            "type": "string",
-                                            "nullable": false
-                                        }
-                                    },
-                                    "required": [
-                                        "token"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "summary": "Creates a user token.",
-                "description": "Creates a user token.",
-                "requestBody": {
-                    "description": "The login data",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "identifier": {
-                                        "type": "string",
-                                        "nullable": false
-                                    },
-                                    "password": {
-                                        "type": "string",
-                                        "nullable": false
-                                    }
-                                },
-                                "required": [
-                                    "identifier",
-                                    "password"
-                                ]
-                            }
-                        }
-                    },
-                    "required": true
-                }
-            }
-        },
         "/resources": {
             "get": {
                 "operationId": "api_resources_get_collection",
@@ -750,8 +749,7 @@
                         "schema": {
                             "type": "integer",
                             "default": 25,
-                            "minimum": 0,
-                            "maximum": 30
+                            "minimum": 0
                         },
                         "style": "form",
                         "explode": false
@@ -1271,8 +1269,7 @@
                         "schema": {
                             "type": "integer",
                             "default": 25,
-                            "minimum": 0,
-                            "maximum": 30
+                            "minimum": 0
                         },
                         "style": "form",
                         "explode": false
@@ -1768,8 +1765,7 @@
                         "schema": {
                             "type": "integer",
                             "default": 25,
-                            "minimum": 0,
-                            "maximum": 30
+                            "minimum": 0
                         },
                         "style": "form",
                         "explode": false
@@ -2244,8 +2240,7 @@
                         "schema": {
                             "type": "integer",
                             "default": 25,
-                            "minimum": 0,
-                            "maximum": 30
+                            "minimum": 0
                         },
                         "style": "form",
                         "explode": false

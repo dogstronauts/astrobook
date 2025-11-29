@@ -10,6 +10,7 @@ declare(strict_types=1);
  */
 
 use Rector\Config\RectorConfig;
+use Rector\Set\ValueObject\LevelSetList;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -23,4 +24,9 @@ return RectorConfig::configure()
     ->withDeadCodeLevel(10)
     ->withCodeQualityLevel(10)
     ->withCodingStyleLevel(10)
+    ->withComposerBased(doctrine: true, phpunit: true, symfony: true)
+    ->withAttributesSets(symfony: true, doctrine: true, phpunit: true)
+    ->withSets([
+        LevelSetList::UP_TO_PHP_85,
+    ])
 ;

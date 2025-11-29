@@ -77,6 +77,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                         405,
                     ],
                     'buffer_size' => 50,
+                    'channels' => ['!deprecation'],
                 ],
                 'nested' => [
                     'type' => 'stream',

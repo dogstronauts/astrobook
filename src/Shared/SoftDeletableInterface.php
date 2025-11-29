@@ -20,7 +20,5 @@ namespace Dogstronauts\AstroBook\Shared;
  */
 interface SoftDeletableInterface
 {
-    public ?\DateTimeImmutable $deletedAt {
-        get;
-    }
+    public ?\DateTimeImmutable $deletedAt {get; }
 }

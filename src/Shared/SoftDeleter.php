@@ -20,7 +20,7 @@ final class SoftDeleter
 {
     private static array $managers = [];
 
-    private \SplObjectStorage $visited;
+    private readonly \SplObjectStorage $visited;
 
     public function __construct(private readonly ManagerRegistry $registry)
     {
@@ -29,11 +29,11 @@ final class SoftDeleter
 
     public function markAsDeleted(SoftDeletableInterface $entity, bool $flush = true): void
     {
-        if ($this->visited->contains($entity)) {
+        if ($this->visited->offsetExists($entity)) {
             return;
         }
 
-        $this->visited->attach($entity);
+        $this->visited->offsetSet($entity);
         $entity->deletedAt = new \DateTimeImmutable();
 
         $em = $this->getEntityManager($entity);
@@ -47,7 +47,7 @@ final class SoftDeleter
             $fieldName = $association['fieldName'];
             $related = $metadata->getFieldValue($entity, $fieldName);
 
-            if ($related instanceof \Traversable || is_array($related)) {
+            if (is_iterable($related)) {
                 foreach ($related as $item) {
                     if ($item instanceof SoftDeletableInterface) {
                         $this->markAsDeleted($item, false);

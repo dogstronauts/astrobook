@@ -41,6 +41,7 @@ class UserFactory extends PersistentProxyObjectFactory
         ];
     }
 
+    #[\Override]
     protected function initialize(): static
     {
         return $this->afterInstantiate(function (User $user): void {

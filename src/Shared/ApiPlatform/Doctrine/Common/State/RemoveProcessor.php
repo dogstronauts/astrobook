@@ -19,11 +19,11 @@ use Dogstronauts\AstroBook\Shared\SoftDeleter;
 use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
 
 #[AsDecorator('api_platform.doctrine.orm.state.remove_processor')]
-final class RemoveProcessor implements ProcessorInterface
+final readonly class RemoveProcessor implements ProcessorInterface
 {
     public function __construct(
-        private readonly EntityManagerInterface $entityManager,
-        private readonly SoftDeleter $softDeleter
+        private EntityManagerInterface $entityManager,
+        private SoftDeleter $softDeleter
     ) {
     }
 
