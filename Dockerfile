@@ -15,25 +15,25 @@ RUN --mount=type=cache,target=/var/cache/apk \
 RUN --mount=type=cache,target=/var/cache/apk \
     set -eux; \
     apk add --no-cache --no-progress \
-      php84-phar \
-      php84-mbstring \
-      php84-iconv \
-      php84-openssl \
-      php84-ctype \
-      php84-sodium \
-      php84-xml \
-      php84-tokenizer \
-      php84-dom \
-      php84-simplexml \
-      php84-xmlwriter \
-      php84-intl \
-      php84-session \
-      php84-pdo \
-      php84-pdo_pgsql;
+      php85-phar \
+      php85-mbstring \
+      php85-iconv \
+      php85-openssl \
+      php85-ctype \
+      php85-sodium \
+      php85-xml \
+      php85-tokenizer \
+      php85-dom \
+      php85-simplexml \
+      php85-xmlwriter \
+      php85-intl \
+      php85-session \
+      php85-pdo \
+      php85-pdo_pgsql;
 
 RUN git config --global --add safe.directory /var/www/app
 
-COPY --link .docker/php/conf.d/app.ini /etc/php84/php.ini
+COPY --link .docker/php/conf.d/app.ini /etc/php85/php.ini
 
 COPY --from=composer/composer:2-bin --link /composer /usr/local/bin/composer
 
@@ -52,9 +52,9 @@ WORKDIR /var/www/app
 
 RUN --mount=type=cache,target=/var/cache/apk \
     set -eux; \
-    apk add --no-cache --no-progress php84-pecl-xdebug;
+    apk add --no-cache --no-progress php85-pecl-xdebug;
 
-COPY --link .docker/php/conf.d/50_xdebug.ini /etc/php84/conf.d/50_xdebug.ini
+COPY --link .docker/php/conf.d/50_xdebug.ini /etc/php85/conf.d/50_xdebug.ini
 
 FROM nginx:alpine AS nginx_dev
 
