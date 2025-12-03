@@ -43,7 +43,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 ],
                 'jwt' => null,
                 'refresh_jwt' => [
-                    'check_path' => 'auth_refresh_tokens',
+                    'check_path' => '_api_/auth/refresh_tokens{._format}_post',
                 ],
             ],
         ],

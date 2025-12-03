@@ -35,12 +35,6 @@
         </testsuite>
     </testsuites>
 
-    <extensions>
-        <bootstrap class="Zenstruck\Foundry\PHPUnit\FoundryExtension" />
-        <bootstrap class="DAMA\DoctrineTestBundle\PHPUnit\PHPUnitExtension"/>
-        <bootstrap class="Zenstruck\Browser\Test\BrowserExtension"/>
-    </extensions>
-
     <source ignoreSuppressionOfDeprecations="true"
             ignoreIndirectDeprecations="true"
             restrictNotices="true"
@@ -49,10 +43,17 @@
         <include>
             <directory>src</directory>
         </include>
+
         <deprecationTrigger>
             <method>Doctrine\Deprecations\Deprecation::trigger</method>
             <method>Doctrine\Deprecations\Deprecation::delegateTriggerToBackend</method>
             <function>trigger_deprecation</function>
         </deprecationTrigger>
     </source>
+
+    <extensions>
+        <bootstrap class="Zenstruck\Foundry\PHPUnit\FoundryExtension"/>
+        <bootstrap class="DAMA\DoctrineTestBundle\PHPUnit\PHPUnitExtension"/>
+        <bootstrap class="Zenstruck\Browser\Test\BrowserExtension"/>
+    </extensions>
 </phpunit>
