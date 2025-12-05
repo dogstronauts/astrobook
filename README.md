@@ -68,7 +68,7 @@ openssl rand -base64 32
 
 ## API & Documentation
 - Swagger UI (API Platform): http://localhost:8080/docs
-- Export OpenAPI JSON (root/openapi.json):
+- Export OpenAPI JSON [openapi.json](openapi.json)
 ```bash
 docker compose exec app-php composer run export-openapi-doc
 ```
