@@ -7,10 +7,12 @@
 /var/
 /vendor/
 /config/jwt/*.pem
-/phpunit.xml
 /phpstan.neon
 /compose.override.yaml
 /.phpunit.cache
 /.phpdoc.cache
 /.php-cs-fixer.php
 /.php-cs-fixer.cache
+phpstan.neon
+/phpunit.xml
+/.phpunit.cache/

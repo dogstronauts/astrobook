@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace Dogstronauts\AstroBook;
 
-use Dogstronauts\AstroBook\Auth\DependencyInjection\Compiler\GesdinetPass;
 use Dogstronauts\AstroBook\Resources\Fields\DependencyInjection\RegisterFieldOptionsConfiguratorsPass;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -23,7 +22,6 @@ class Kernel extends BaseKernel
 
     protected function build(ContainerBuilder $container): void
     {
-        $container->addCompilerPass(new GesdinetPass());
         $container->addCompilerPass(new RegisterFieldOptionsConfiguratorsPass());
     }
 }
