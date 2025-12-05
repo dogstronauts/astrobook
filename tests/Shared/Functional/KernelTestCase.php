@@ -35,7 +35,7 @@ abstract class KernelTestCase extends baseKernelTestCase
     ): User {
         return UserFactory::createOne([
             'identifier' => $identifier,
-            'password' => $plainPassword,
+            'plainPassword' => $plainPassword,
             'roles' => $roles,
         ]);
     }
