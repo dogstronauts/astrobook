@@ -34,7 +34,7 @@ AstroBook centralizes event coordination and resource management across the gala
 ```bash
 git clone https://github.com/dogstronauts/astrobook
 cd astrobook
-cp compose.override.yaml.dist compose.override.yaml
+cp compose.override.dist.yaml compose.override.yaml
 cp .env .env.local
 ```
 
