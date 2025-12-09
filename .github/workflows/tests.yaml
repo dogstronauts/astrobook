@@ -63,6 +63,12 @@ jobs:
         env:
           DATABASE_URL: postgresql://user:password@localhost:5432/dbname?serverVersion=15&charset=utf8
 
+      - name: Generate JWT keys and a test token
+        run: |
+          php bin/console lexik:jwt:generate-keypair --overwrite -n
+        env:
+          DATABASE_URL: postgresql://user:password@localhost:5432/dbname?serverVersion=15&charset=utf8
+
       - name: Run tests
         run: composer run tests
         env:
