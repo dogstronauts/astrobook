@@ -23,8 +23,9 @@ use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
 /**
  * @internal
  */
-#[Group('auth')]
 #[Group('endpoints')]
+#[Group('auth-endpoints')]
+#[Group('auth-password-reset-requests-endpoints')]
 final class PasswordResetRequestEndpointTest extends KernelTestCase
 {
     use MailerAssertionsTrait;
@@ -35,6 +36,42 @@ final class PasswordResetRequestEndpointTest extends KernelTestCase
 
         self::getContainer()->get('mailer.message_logger_listener')->reset();
         $this->getPasswordResetRequestRepository()->createQueryBuilder('prr')->delete()->getQuery()->execute();
+    }
+
+    #[Group('post-endpoints-success')]
+    #[Group('post-auth-password-reset-requests-endpoint-success')]
+    public function testPostSuccess(): void
+    {
+        $this->createUser();
+
+        $this->browser()
+            ->post('/auth/password_reset_requests', [
+                'json' => [
+                    'identifier' => 'test@example.com',
+                    'newPassword' => $new = '3G2wD+jNKd+A36j2',
+                    'confirmPassword' => $new,
+                ],
+            ])
+            ->assertStatus(Response::HTTP_NO_CONTENT)
+        ;
+    }
+
+    #[Group('post-endpoints-validation')]
+    #[Group('post-auth-password-reset-requests-endpoint-validation')]
+    public function testPostValidationErrorWhenPasswordsMismatch(): void
+    {
+        $this->createUser();
+
+        $this->browser()
+            ->post('/auth/password_reset_requests', [
+                'json' => [
+                    'identifier' => 'test@example.com',
+                    'newPassword' => 'ValidPass123!@#',
+                    'confirmPassword' => 'DifferentPass123!@#',
+                ],
+            ])
+            ->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY)
+        ;
     }
 
     public function testRequestCreatesTokenAndSendsEmail(): void
