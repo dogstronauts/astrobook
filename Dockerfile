@@ -1,6 +1,8 @@
-# syntax=docker/dockerfile:1.7
+# syntax=docker/dockerfile:1.19.0
 
-FROM mztrix/php-fpm AS app_base
+ARG VERSION=latest
+
+FROM mztrix/php-fpm:${VERSION} AS app_base
 
 WORKDIR /var/www/app
 
@@ -14,26 +16,11 @@ RUN --mount=type=cache,target=/var/cache/apk \
 
 RUN --mount=type=cache,target=/var/cache/apk \
     set -eux; \
-    apk add --no-cache --no-progress \
-      php85-phar \
-      php85-mbstring \
-      php85-iconv \
-      php85-openssl \
-      php85-ctype \
-      php85-sodium \
-      php85-xml \
-      php85-tokenizer \
-      php85-dom \
-      php85-simplexml \
-      php85-xmlwriter \
-      php85-intl \
-      php85-session \
-      php85-pdo \
-      php85-pdo_pgsql;
+    PHP_PACKAGES="php85-phar php85-mbstring php85-iconv php85-openssl php85-ctype php85-sodium php85-xml php85-tokenizer php85-dom php85-simplexml php85-xmlwriter php85-intl php85-session php85-pdo php85-pdo_pgsql "; \
+    apk add --no-cache --no-progress ${PHP_PACKAGES}
 
-RUN git config --global --add safe.directory /var/www/app
-
-COPY --link .docker/php/conf.d/app.ini /etc/php85/php.ini
+COPY --link .docker/php/php.ini /etc/php85/php.ini
+COPY --link .docker/php/conf.d/* /etc/php85/conf.d/
 
 COPY --from=composer/composer:2-bin --link /composer /usr/local/bin/composer
 
@@ -46,17 +33,7 @@ RUN set -eux; chmod +x /usr/local/bin/entrypoint
 
 ENTRYPOINT ["entrypoint"]
 
-FROM app_base AS app_dev
-
-WORKDIR /var/www/app
-
-RUN --mount=type=cache,target=/var/cache/apk \
-    set -eux; \
-    apk add --no-cache --no-progress php85-pecl-xdebug;
-
-COPY --link .docker/php/conf.d/50_xdebug.ini /etc/php85/conf.d/50_xdebug.ini
-
-FROM nginx:alpine AS nginx_dev
+FROM nginx:alpine AS nginx_base
 
 WORKDIR /var/www/app/public
 

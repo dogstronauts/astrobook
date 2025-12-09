@@ -1,5 +1,28 @@
+x-app-php-attributes: &app-php-attributes
+  image: ${IMAGES_PREFIX:-}app-php
+  build:
+    context: .
+    target: app_base
+  environment:
+    PHP_IDE_CONFIG: "serverName=myServerName"
+  volumes:
+    - .:/var/www/app
+    - /var/cache
+    - app-vendor:/var/www/app/vendor
+    - fpm-sock:/var/run/php
+  extra_hosts:
+    - host.docker.internal:host-gateway
+
 x-app-nginx-attributes: &app-nginx-attributes
   image: ${IMAGES_PREFIX:-}app-nginx
+  build:
+    context: .
+    target: nginx_base
+  volumes:
+    - .docker/nginx/conf.d/proxy.conf:/etc/nginx/conf.d/proxy.conf
+    - .docker/nginx/conf.d/gzip.conf:/etc/nginx/conf.d/gzip.conf
+    - ./public:/var/www/app/public
+    - fpm-sock:/var/run/php
   ports:
     - "8080:80"
 
@@ -15,10 +38,22 @@ x-app-mailer-attributes: &app-mailer-attributes
 
 x-app-database-attributes: &app-database-attributes
   image: postgres:${POSTGRES_VERSION:-18}-alpine
+  environment:
+    POSTGRES_DB: ${POSTGRES_DB:-dbname}
+    POSTGRES_USER: ${POSTGRES_USER:-user}
+    POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
   ports:
     - "5432:5432"
+  volumes:
+    - db-data:/var/lib/postgresql:rw
 
 services:
+  app-php: *app-php-attributes
+  app-database: *app-database-attributes
   app-nginx: *app-nginx-attributes
   app-mailer: *app-mailer-attributes
-  app-database: *app-database-attributes
+
+volumes:
+  fpm-sock:
+  app-vendor:
+  db-data:

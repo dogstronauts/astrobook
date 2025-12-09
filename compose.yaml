@@ -1,13 +1,6 @@
 x-app-php-attributes: &app-php-attributes
   image: ${IMAGES_PREFIX:-}app-php
-  build:
-    context: .
-    target: app_dev
   restart: unless-stopped
-  volumes:
-    - .:/var/www/app
-    - app-vendor:/var/www/app/vendor
-    - fpm-sock:/var/run/php
   healthcheck:
     test: [ "CMD", "healthcheck" ]
     interval: 10s
@@ -17,29 +10,16 @@ x-app-php-attributes: &app-php-attributes
   depends_on:
     app-database:
       condition: service_healthy
-  extra_hosts:
-    - host.docker.internal:host-gateway
   command: ["php-fpm", "-F"]
 
 x-app-database-attributes: &app-database-attributes
   image: postgres:${POSTGRES_VERSION:-18}-alpine
   restart: unless-stopped
-  environment:
-    POSTGRES_DB: ${POSTGRES_DB:-dbname}
-    POSTGRES_USER: ${POSTGRES_USER:-user}
-    POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
-
   healthcheck:
     test: [ "CMD", "pg_isready", "-d", "${POSTGRES_DB:-dbname}", "-U", "${POSTGRES_USER:-user}" ]
     timeout: 5s
     retries: 5
     start_period: 60s
-#    test: [ "CMD", "pg_isready", "-d", "${POSTGRES_DB:-app}", "-U", "${POSTGRES_USER:-app}" ]
-#    timeout: 5s
-#    retries: 5
-#    start_period: 60s
-  volumes:
-    - db-data:/var/lib/postgresql:rw
 
 x-app-nginx-attributes: &app-nginx-attributes
   image: ${IMAGES_PREFIX:-}app-nginx
@@ -47,11 +27,6 @@ x-app-nginx-attributes: &app-nginx-attributes
     context: .
     target: nginx_dev
   restart: unless-stopped
-  volumes:
-    - .docker/nginx/conf.d/proxy.conf:/etc/nginx/conf.d/proxy.conf
-    - .docker/nginx/conf.d/gzip.conf:/etc/nginx/conf.d/gzip.conf
-    - ./public:/var/www/app/public
-    - fpm-sock:/var/run/php
   depends_on:
     app-php:
       condition: service_healthy
@@ -63,18 +38,9 @@ x-app-nginx-attributes: &app-nginx-attributes
 
 x-app-mailer-attributes: &app-mailer-attributes
   image: axllent/mailpit
-  environment:
-    MP_SMTP_AUTH_ACCEPT_ANY: 1
-    MP_SMTP_AUTH_ALLOW_INSECURE: 1
 
 services:
-  app-database: *app-database-attributes
   app-php: *app-php-attributes
+  app-database: *app-database-attributes
   app-nginx: *app-nginx-attributes
   app-mailer: *app-mailer-attributes
-
-
-volumes:
-  fpm-sock:
-  app-vendor:
-  db-data:
