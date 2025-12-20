@@ -36,7 +36,7 @@
         "doctrine/dbal": "^4.4",
         "doctrine/doctrine-bundle": "^2.18",
         "doctrine/doctrine-migrations-bundle": "^3.7",
-        "doctrine/orm": "^3.5",
+        "doctrine/orm": "^3.6",
         "gesdinet/jwt-refresh-token-bundle": "^1.5",
         "lexik/jwt-authentication-bundle": "^3.1",
         "nelmio/cors-bundle": "^2.6",
@@ -75,7 +75,7 @@
     "require-dev": {
         "dama/doctrine-test-bundle": "^8.4",
         "doctrine/doctrine-fixtures-bundle": "^4.3",
-        "friendsofphp/php-cs-fixer": "^3.91",
+        "friendsofphp/php-cs-fixer": "^3.92",
         "mtdowling/jmespath.php": "^2.8",
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-doctrine": "^2.0",
