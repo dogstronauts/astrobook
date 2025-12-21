@@ -30,7 +30,7 @@ final class RefreshTokenEndpointTest extends KernelTestCase
         $this->createUser();
 
         $response = $this->browser()
-            ->post('/auth/login', [
+            ->post('/auth', [
                 'json' => [
                     'identifier' => 'test@example.com',
                     'password' => '$3CR3T',
