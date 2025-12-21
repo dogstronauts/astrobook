@@ -11,10 +11,12 @@ declare(strict_types=1);
 
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
+use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
+
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('doctrine_migrations', [
         'migrations_paths' => [
-            'Dogstronauts\AstroBook\DoctrineMigrations' => '%kernel.project_dir%/migrations',
+            'Dogstronauts\AstroBook\DoctrineMigrations' => sprintf('%s/migrations', param('kernel.project_dir')),
         ],
         'enable_profiler' => false,
     ]);

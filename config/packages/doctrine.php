@@ -12,11 +12,13 @@ declare(strict_types=1);
 use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
+use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
+
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('doctrine', [
         'dbal' => [
-            'url' => '%env(resolve:DATABASE_URL)%',
-            'profiling_collect_backtrace' => '%kernel.debug%',
+            'url' => param('database_url'),
+            'profiling_collect_backtrace' => param('kernel.debug'),
         ],
         'orm' => [
             'auto_generate_proxy_classes' => true,
@@ -82,7 +84,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         $containerConfigurator->extension('doctrine', [
             'orm' => [
                 'auto_generate_proxy_classes' => false,
-                'proxy_dir' => '%kernel.build_dir%/doctrine/orm/Proxies',
+                'proxy_dir' => sprintf('%s/doctrine/orm/Proxies', param('kernel.build_dir')),
                 'query_cache_driver' => [
                     'type' => 'pool',
                     'pool' => 'doctrine.system_cache_pool',

@@ -11,17 +11,14 @@ declare(strict_types=1);
 
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
+use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
+
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('lexik_jwt_authentication', [
-        'secret_key' => '%env(resolve:JWT_SECRET_KEY)%',
-        'public_key' => '%env(resolve:JWT_PUBLIC_KEY)%',
-        'pass_phrase' => '%env(JWT_PASSPHRASE)%',
+        'secret_key' => param('jwt_secret_key'),
+        'public_key' => param('jwt_public_key'),
+        'pass_phrase' => param('jwt_passphrase'),
         'token_ttl' => 3600,
         'user_id_claim' => 'identifier',
-        'api_platform' => [
-            'check_path' => '/auth/login',
-            'username_path' => 'identifier',
-            'password_path' => 'password',
-        ],
     ]);
 };

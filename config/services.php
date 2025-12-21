@@ -21,17 +21,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->autoconfigure()
     ;
 
-    $services->load('Dogstronauts\AstroBook\\', __DIR__ . '/../src/');
-    //        ->exclude([
-    //            __DIR__ . '/../src/Kernel.php',
-    //            __DIR__ . '/../src/*/DependencyInjection',
-    //            __DIR__ . '/../src/*/Model',
-    //            __DIR__ . '/../src/*/Event',
-    //        ])
+    $services->load('Dogstronauts\AstroBook\\', sprintf('%s/../src/', __DIR__));
 
     if (in_array($containerConfigurator->env(), ['dev', 'test'], true)) {
         $services
-            ->load('Dogstronauts\AstroBook\Fixtures\\', __DIR__ . '/../fixtures/')
+            ->load('Dogstronauts\AstroBook\Fixtures\\', sprintf('%s/../fixtures/', __DIR__))
             ->autowire()
             ->autoconfigure()
         ;

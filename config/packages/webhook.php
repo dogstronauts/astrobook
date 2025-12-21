@@ -11,13 +11,15 @@ declare(strict_types=1);
 
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
+use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
+
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('framework', [
         'webhook' => [
             'routing' => [
                 'password-reset/confirm' => [
                     'service' => Dogstronauts\AstroBook\Auth\Webhook\PasswordResetConfirmRequestParser::class,
-                    'secret' => 'your_secret_here',
+                    'secret' => param('app_secret'),
                 ],
             ],
         ],

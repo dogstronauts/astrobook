@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
+use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
+
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('api_platform', [
         'title' => 'AstroBook',
@@ -65,11 +67,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ],
         'mapping' => [
             'paths' => [
-                '%kernel.project_dir%/src/Taxonomies/Model',
-                '%kernel.project_dir%/src/Users/Model',
-                '%kernel.project_dir%/src/Auth/Model',
-                '%kernel.project_dir%/src/Events/Model',
-                '%kernel.project_dir%/src/Resources/Model',
+                sprintf('%s/src/%s/Model', param('kernel.project_dir'), 'Taxonomies'),
+                sprintf('%s/src/%s/Model', param('kernel.project_dir'), 'Users'),
+                sprintf('%s/src/%s/Model', param('kernel.project_dir'), 'Auth'),
+                sprintf('%s/src/%s/Model', param('kernel.project_dir'), 'Events'),
+                sprintf('%s/src/%s/Model', param('kernel.project_dir'), 'Resources'),
             ],
         ],
     ]);
