@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 return static function (RoutingConfigurator $routingConfigurator): void {
     $routingConfigurator
-        ->add('_api_/auth/refresh_tokens{._format}_post', '/auth/refresh_tokens')
+        ->add('_api_/auth/refresh_tokens.json_post', '/auth/refresh_tokens')
         ->methods(['POST'])
     ;
 };

@@ -35,7 +35,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 'provider' => 'user_provider',
                 'entry_point' => 'jwt',
                 'json_login' => [
-                    'check_path' => 'auth_login',
+                    'check_path' => '/auth',
                     'username_path' => 'identifier',
                     'password_path' => 'password',
                     'success_handler' => 'lexik_jwt_authentication.handler.authentication_success',
@@ -43,7 +43,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 ],
                 'jwt' => null,
                 'refresh_jwt' => [
-                    'check_path' => '_api_/auth/refresh_tokens{._format}_post',
+                    'check_path' => '_api_/auth/refresh_tokens.json_post',
                 ],
             ],
         ],
@@ -53,7 +53,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 'roles' => 'PUBLIC_ACCESS',
             ],
             [
-                'path' => '^/auth/(login|refresh_tokens|password_reset_requests)$',
+                'path' => '^/auth(?:/(refresh_tokens|password_reset_requests))?$',
                 'roles' => 'PUBLIC_ACCESS',
                 'method' => 'POST',
             ],

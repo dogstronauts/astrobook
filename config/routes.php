@@ -12,9 +12,7 @@ declare(strict_types=1);
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 return static function (RoutingConfigurator $routingConfigurator): void {
-    $routingConfigurator->add('auth_login', '/auth/login')
-        ->methods([
-            'POST',
-        ])
+    $routingConfigurator->add('_api_/auth.json_post', '/auth')
+        ->methods(['POST'])
     ;
 };

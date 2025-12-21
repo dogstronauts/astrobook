@@ -31,7 +31,7 @@ final class LoginEndpointTest extends KernelTestCase
         $this->createUser();
 
         $this->browser()
-            ->post('/auth/login', [
+            ->post('/auth', [
                 'json' => [
                     'identifier' => 'test@example.com',
                     'password' => '$3CR3T',
@@ -53,7 +53,7 @@ final class LoginEndpointTest extends KernelTestCase
         $this->createUser();
 
         $this->browser()
-            ->post('/auth/login', [
+            ->post('/auth', [
                 'json' => [
                     'identifier' => $identifier,
                     'password' => $plainPassword,

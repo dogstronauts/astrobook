@@ -26,7 +26,7 @@
         }
     ],
     "paths": {
-        "/auth/login": {
+        "/auth": {
             "post": {
                 "operationId": "api_auth_post",
                 "tags": [
@@ -34,30 +34,45 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "User token created",
+                        "description": "Returns a JWT access token and a refresh token for the authenticated user.",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
+                                    "required": [
+                                        "token",
+                                        "refresh_token"
+                                    ],
                                     "properties": {
                                         "token": {
-                                            "readOnly": true,
                                             "type": "string",
-                                            "nullable": false
+                                            "readOnly": true,
+                                            "description": "JWT access token"
+                                        },
+                                        "refresh_token": {
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "description": "Refresh token"
                                         }
-                                    },
-                                    "required": [
-                                        "token"
-                                    ]
+                                    }
+                                },
+                                "examples": {
+                                    "auth-example": {
+                                        "summary": "Example of authentication response",
+                                        "value": {
+                                            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+                                            "refresh_token": "def50200a1b2c3d4e5f6..."
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 },
-                "summary": "Creates a user token.",
-                "description": "Creates a user token.",
+                "summary": "Authenticate user",
+                "description": "Authenticates user credentials and returns a JWT access token and refresh token.",
                 "requestBody": {
-                    "description": "The login data",
+                    "description": "User credentials",
                     "content": {
                         "application/json": {
                             "schema": {
@@ -65,22 +80,36 @@
                                 "properties": {
                                     "identifier": {
                                         "type": "string",
-                                        "nullable": false
+                                        "description": "User identifier",
+                                        "writeOnly": true,
+                                        "format": "email",
+                                        "minLength": 1,
+                                        "maxLength": 128
                                     },
                                     "password": {
                                         "type": "string",
-                                        "nullable": false
+                                        "description": "User password",
+                                        "writeOnly": true,
+                                        "format": "password",
+                                        "minLength": 8,
+                                        "maxLength": 128
                                     }
-                                },
-                                "required": [
-                                    "identifier",
-                                    "password"
-                                ]
+                                }
+                            },
+                            "examples": {
+                                "auth-example": {
+                                    "summary": "Example of authentication request",
+                                    "value": {
+                                        "identifier": "demo@demo.fr",
+                                        "password": "demo1234%"
+                                    }
+                                }
                             }
                         }
                     },
                     "required": true
-                }
+                },
+                "security": []
             }
         },
         "/auth/password_reset_requests": {
@@ -132,54 +161,72 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "User token refreshed.",
+                        "description": "Returns a JWT access token and a refresh token for the authenticated user.",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
-                                    "properties": {
-                                        "token": {
-                                            "readOnly": true,
-                                            "type": "string",
-                                            "nullable": false
-                                        },
-                                        "refresh_token": {
-                                            "readOnly": true,
-                                            "type": "string",
-                                            "nullable": false
-                                        }
-                                    },
                                     "required": [
                                         "token",
                                         "refresh_token"
-                                    ]
+                                    ],
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "description": "JWT access token"
+                                        },
+                                        "refresh_token": {
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "description": "Refresh token"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "auth-example": {
+                                        "summary": "Example of authentication response",
+                                        "value": {
+                                            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+                                            "refresh_token": "def50200a1b2c3d4e5f6..."
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 },
-                "summary": "Refresh a user token.",
-                "description": "Refresh a user token.",
+                "summary": "Refresh JWT token",
+                "description": "Exchanges a valid refresh token for a new JWT access token and refresh token.",
                 "requestBody": {
-                    "description": "The refresh_token to refresh token",
+                    "description": "Refresh token used to obtain a new JWT access token",
                     "content": {
                         "application/json": {
                             "schema": {
                                 "type": "object",
+                                "required": [
+                                    "refresh_token"
+                                ],
                                 "properties": {
                                     "refresh_token": {
                                         "type": "string",
-                                        "nullable": false
+                                        "description": "Valid refresh token"
                                     }
-                                },
-                                "required": [
-                                    "refresh_token"
-                                ]
+                                }
+                            },
+                            "examples": {
+                                "auth-example": {
+                                    "summary": "Example of refresh token request",
+                                    "value": {
+                                        "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                                    }
+                                }
                             }
                         }
                     },
                     "required": true
-                }
+                },
+                "security": []
             }
         },
         "/events": {
@@ -3804,8 +3851,9 @@
         "requestBodies": {},
         "headers": {},
         "securitySchemes": {
-            "JWT": {
+            "BearerAuth": {
                 "type": "http",
+                "description": "JWT Bearer authentication",
                 "scheme": "bearer",
                 "bearerFormat": "JWT"
             }
@@ -3813,7 +3861,7 @@
     },
     "security": [
         {
-            "JWT": []
+            "BearerAuth": []
         }
     ],
     "tags": [
